@@ -1,0 +1,229 @@
+When this is changed, remove "~/.emacs.el".
+
+* Install
+This is for installing all packages during a fresh setup :)
+Of course, it's the first thing that has to be executed.
+** Prepare MELPA
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+#+END_SRC
+** Install use-package
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+#+END_SRC
+
+
+* Theme
+#+BEGIN_SRC emacs-lisp
+(use-package doom-themes)
+(load-theme 'doom-dracula t)
+#+END_SRC
+
+
+* Tabs
+Some parts here come from: https://dougie.io/emacs/indentation/
+** Size
+#+BEGIN_SRC emacs-lisp
+(setq custom-tab-width 4)
+#+END_SRC
+** Generic functions
+#+BEGIN_SRC emacs-lisp
+(defun disable-tabs () (setq indent-tabs-mode nil))
+(defun enable-tabs  ()
+  (local-set-key (kbd "TAB") 'tab-to-tab-stop)
+  (setq indent-tabs-mode t)
+  (setq tab-width custom-tab-width))
+#+END_SRC
+** Language-specific modes
+*** Prog
+#+BEGIN_SRC emacs-lisp
+(add-hook 'prog-mode-hook 'enable-tabs)
+#+END_SRC
+*** Lisp
+#+BEGIN_SRC emacs-lisp
+(add-hook 'lisp-mode-hook 'enable-tabs)
+(add-hook 'emacs-lisp-mode-hook 'enable-tabs)
+#+END_SRC
+*** HTML
+#+BEGIN_SRC emacs-lisp
+(add-hook 'html-mode-hook 'enable-tabs)
+(setq sgml-basic-offset 4)
+#+END_SRC
+*** Python
+#+BEGIN_SRC emacs-lisp
+(setq-default python-indent-offset custom-tab-width)
+#+END_SRC
+*** JS
+#+BEGIN_SRC emacs-lisp
+(setq-default js-indent-level custom-tab-width)
+#+END_SRC
+*** C
+#+BEGIN_SRC emacs-lisp
+(setq c-basic-offset custom-tab-width)
+#+END_SRC
+*** Ruby
+#+BEGIN_SRC emacs-lisp
+(setq ruby-indent-level custom-tab-width)
+#+END_SRC
+*** XML
+#+BEGIN_SRC emacs-lisp
+(add-hook 'nxml-mode-hook 'enable-tabs)
+(setq nxml-child-indent custom-tab-width)
+#+END_SRC
+** electric-indent (???)
+#+BEGIN_SRC emacs-lisp
+(setq-default electric-indent-inhibit t)
+#+END_SRC
+** Make it so the backspace removes tabs
+#+BEGIN_SRC emacs-lisp
+(setq backward-delete-char-untabify-method 'hungry)
+#+END_SRC
+** Show '|' on tabs
+#+BEGIN_SRC emacs-lisp
+(setq whitespace-style '(face tabs tab-mark trailing))
+
+(setq whitespace-display-mappings
+  '((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
+(global-whitespace-mode) ; Enable whitespace mode everywhere
+#+END_SRC
+
+
+* Font
+#+BEGIN_SRC emacs-lisp
+(set-face-attribute 'default nil :height 160)
+#+END_SRC
+
+
+* Packages
+** All The Icons
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons)
+#+END_SRC
+** Treemacs (File browser)
+#+BEGIN_SRC emacs-lisp
+(use-package treemacs
+  :bind ("<f6>" . treemacs))
+#+END_SRC
+** org-bullets (neat ORG)
+#+BEGIN_SRC emacs-lisp
+(use-package org-bullets
+  :hook (org-mode . (lambda () (org-bullets-mode 1))))
+#+END_SRC
+
+** Centaur Tabs
+*** Install and enable
+#+BEGIN_SRC emacs-lisp
+(use-package centaur-tabs)
+(centaur-tabs-mode t)
+#+END_SRC
+*** Shortcuts
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-<prior>")  'centaur-tabs-backward)
+(global-set-key (kbd "C-<next>") 'centaur-tabs-forward)
+#+END_SRC
+*** Customization
+**** Make tabbar uniform
+#+BEGIN_SRC emacs-lisp
+(centaur-tabs-headline-match)
+#+END_SRC
+**** Use icons from All The Icons
+#+BEGIN_SRC emacs-lisp
+(setq centaur-tabs-set-icons t)
+#+END_SRC
+
+**** Bar style
+#+BEGIN_SRC emacs-lisp
+(setq centaur-tabs-style "bar")
+#+END_SRC
+** Magit
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :bind ("<f9>" . magit))
+#+END_SRC
+** Others that do not require config
+#+BEGIN_SRC emacs-lisp
+(use-package htmlize
+  :defer t)
+#+END_SRC
+
+
+* Changes at bootup (*scratch* and so)
+https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
+** Empty *scratch*
+#+BEGIN_SRC emacs-lisp
+(setq initial-scratch-message "")
+#+END_SRC
+** Kill *scratch* from the buffer
+(When a mode is set)
+#+BEGIN_SRC emacs-lisp
+(defun remove-scratch-buffer ()
+  (if (get-buffer "*scratch*")
+      (kill-buffer "*scratch*")))
+(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+#+END_SRC
+** Kill *messages*
+#+BEGIN_SRC emacs-lisp
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+#+END_SRC
+** Kill *Completions* after opening a file
+#+BEGIN_SRC emacs-lisp
+(add-hook 'minibuffer-exit-hook
+      '(lambda ()
+         (let ((buffer "*Completions*"))
+           (and (get-buffer buffer)
+                (kill-buffer buffer)))))
+#+END_SRC
+** Do not show *Buffer list* when opening more than one file at a time
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-buffer-menu t)
+#+END_SRC
+** Show only one active window when opening multiple files
+#+BEGIN_SRC emacs-lisp
+(add-hook 'window-setup-hook 'delete-other-windows)
+#+END_SRC
+
+
+* Usage
+** Always ask y/n, never yes/no.
+#+BEGIN_SRC emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Use shift key in ORG mode
+#+BEGIN_SRC emacs-lisp
+(setq org-support-shift-select t)
+#+END_SRC
+
+
+* General settings
+** Hide toolbar
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+#+END_SRC
+** Backups
+*** Backups at ~/.emacs-backups
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist `(("." . "~/.emacs-backups")))
+#+END_SRC
+*** Make backups by copy
+#+BEGIN_SRC emacs-lisp
+(setq backup-by-copying t)
+#+END_SRC
+
+** Show line numbers
+#+BEGIN_SRC emacs-lisp
+(global-display-line-numbers-mode)
+#+END_SRC
