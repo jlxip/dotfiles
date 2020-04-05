@@ -227,3 +227,7 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 #+BEGIN_SRC emacs-lisp
 (global-display-line-numbers-mode)
 #+END_SRC
+** Enable line wrap in ORG mode
+#+BEGIN_SRC emacs-lisp
+(setq org-startup-truncated nil)
+#+END_SRC
