@@ -41,4 +41,4 @@ bspc config gapless_monocle      true
 # CUSTOM PROGRAMS CONFIG
 #
 bspc rule -a Org.gnome.Nautilus state=floating
-
+bspc rule -a Alacritty state=floating
