@@ -4,17 +4,28 @@
 # INSTALLATION
 #
 
-if [[ ! $(pacman -Qe | grep bspwm) ]]; then sudo pacman -S bspwm; fi
-if [[ ! $(pacman -Qe | grep sxhkd) ]]; then sudo pacman -S sxhkd; fi
-if [[ ! $(pacman -Qe | grep picom) ]]; then sudo pacman -S picom; fi
-if [[ ! $(pacman -Qe | grep nitrogen) ]]; then sudo pacman -S nitrogen; fi
-if [[ ! $(pacman -Qe | grep alacritty) ]]; then sudo pacman -S alacritty; fi
-if [[ ! $(pacman -Qe | grep lxappearance) ]]; then sudo pacman -S lxappearance; fi
-if [[ ! $(pacman -Qe | grep xorg-xsetroot) ]]; then sudo pacman -S xorg-xsetroot; fi
-if [[ ! $(pacman -Qe | grep rofi) ]]; then sudo pacman -S rofi; fi
-if [[ ! $(pacman -Qe | grep numlockx) ]]; then sudo pacman -S numlockx; fi
-if [[ ! $(pacman -Qe | grep i3lock-fancy) ]]; then yay -S i3lock-fancy; fi
-if [[ ! $(pacman -Qe | grep papirus-icon-theme) ]]; then sudo pacman -S papirus-icon-theme; fi
+function installpkg {
+	if [[ ! $(pacman -Qe | grep $1) ]]; then
+		if [[ $2 == '' ]]; then
+			sudo pacman -S $1
+		else
+			yay -S $1
+		fi
+	fi
+}
+
+installpkg bspwm		# WM
+installpkg sxhkd		# Keyboard
+installpkg picom		# Compositor
+installpkg nitrogen		# Wallpaper
+installpkg alacritty		# Terminal emulator
+installpkg lxappearance		# Customize GTK themes, icons and cursors
+installpkg xorg-xsetroot	# Load cursor at bspwm's boot
+installpkg rofi			# Program launcher
+installpkg numlockx		# Numeric lock at startup
+installpkg i3lock-fancy AUR	# Screen lock
+installpkg papirus-icon-theme	# Icon theme
+installpkg ttf-joypixels	# Emoji font
 
 #
 # CONFIG
