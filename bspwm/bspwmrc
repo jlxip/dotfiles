@@ -42,3 +42,4 @@ bspc config gapless_monocle      true
 #
 bspc rule -a Org.gnome.Nautilus state=floating
 bspc rule -a Alacritty state=floating
+bspc rule -a KeePassXC state=floating

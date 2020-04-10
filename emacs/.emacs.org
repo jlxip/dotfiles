@@ -151,6 +151,11 @@ Some parts here come from: https://dougie.io/emacs/indentation/
 (use-package magit
   :bind ("<f9>" . magit))
 #+END_SRC
+** Emojify
+#+BEGIN_SRC emacs-lisp
+(use-package emojify)
+(add-hook 'after-init-hook #'global-emojify-mode)
+#+END_SRC
 ** Others that do not require config
 #+BEGIN_SRC emacs-lisp
 (use-package htmlize
