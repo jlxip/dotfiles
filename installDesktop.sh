@@ -11,21 +11,61 @@ function installpkg {
 		else
 			yay -S $1
 		fi
+	else
+		echo "Skipping $1"
 	fi
 }
 
-installpkg bspwm		# WM
-installpkg sxhkd		# Keyboard
-installpkg picom		# Compositor
-installpkg nitrogen		# Wallpaper
-installpkg alacritty		# Terminal emulator
+function installjail {
+	if [[ ! $(pacman -Qe | grep $1) ]]; then
+		installpkg devtools
+
+		cd /tmp
+		git clone https://aur.archlinux.org/$1.git
+		cd $1
+		extra-x86_64-build
+		# TODO: make this automatic.
+		echo 'Please execute «sudo pacman -U [tab]»'
+		bash
+		cd /tmp
+		rm -ri $1
+	else
+		echo "Skipping $1"
+	fi
+}
+
+installpkg bspwm				# WM
+installpkg sxhkd				# Keyboard
+installpkg picom				# Compositor
+installpkg nitrogen			# Wallpaper
+installjail polybar			# Top bar
+installpkg alacritty			# Terminal emulator
 installpkg lxappearance		# Customize GTK themes, icons and cursors
-installpkg xorg-xsetroot	# Load cursor at bspwm's boot
-installpkg rofi			# Program launcher
-installpkg numlockx		# Numeric lock at startup
+installpkg xorg-xsetroot		# Load cursor at bspwm's boot
+installpkg rofi				# Program launcher
+installpkg numlockx			# Numeric lock at startup
 installpkg i3lock-fancy AUR	# Screen lock
 installpkg papirus-icon-theme	# Icon theme
-installpkg ttf-joypixels	# Emoji font
+installpkg cpcache-git AUR		# Pacman Cache
+installpkg ttf-joypixels		# Emoji font
+installpkg gnome-clocks		# Alarms
+installpkg incron				# Notice when a file changes
+
+if [[ ! $(pacman -Qe | grep polybar) ]]; then
+	echo 'Manually install polybar with devtools so no build dependencies get in the way.'
+	echo 'TODO: make this automatic.'
+fi
+
+#
+# DAEMONS
+#
+sudo systemctl enable cpcache
+sudo systemctl enable incrond
+
+#
+# SHORT SCRIPTS
+#
+# TODO
 
 #
 # CONFIG
@@ -50,5 +90,7 @@ ln -sf $PWD/polybar/config $HOME/.config/polybar/config
 # rofi
 mkdir ~/.config/rofi 2> /dev/null
 ln -sf $PWD/rofi/style.rasi $HOME/.config/rofi/style.rasi
+
+# TODO: incron config
 
 echo 'Done! :)'

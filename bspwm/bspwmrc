@@ -1,6 +1,15 @@
 #! /bin/sh
 
 #
+# MONITOR CONFIGURATION
+#
+n_monitors=$(xrandr -q | grep -w connected | wc -l)
+if [ $n_monitors -eq 2 ]; then
+	xrandr --output DisplayPort-1 --primary
+	xrandr --output HDMI-A-1 --left-of DisplayPort-1
+fi
+
+#
 # AUTOSTART
 #
 sxhkd &
@@ -9,10 +18,16 @@ xsetroot -cursor_name left_ptr &
 compton &
 nitrogen --restore &
 polybar main &
+if [ $n_monitors -eq 2 ]; then
+	# Wait before launching the second bar so that
+	# the system tray appears in the main one.
+	bash -c "sleep 1; polybar second" &
+fi
 fcitx &
 numlockx &
 protonmail-bridge --no-window &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+telegram-desktop -startintray &
 
 #
 # TOUCHPAD THINGS
@@ -24,9 +39,18 @@ if [ -f "$(which synclient)" ]; then
 fi
 
 #
-# MONITOR
+# MONITOR(S)
 #
-bspc monitor -d I II III IV V VI VII VIII IX X
+
+if [ $n_monitors -eq 1 ]; then
+	# Laptop
+	bspc monitor -d I II III IV V VI VII VIII IX X
+else
+	# Desktop
+	# If at some point fails, run xrandr here.
+	bspc monitor DisplayPort-1 -d I III V VII IX
+	bspc monitor HDMI-A-1 -d II IV VI VIII X
+fi
 
 #
 # CONFIG
@@ -36,6 +60,8 @@ bspc config window_gap          12
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
+# This is meant to help with the electron-based apps bug, but I think it doesn't :(
+bspc config ignore_ewmh_focus true
 
 #
 # CUSTOM PROGRAMS CONFIG
@@ -43,3 +69,6 @@ bspc config gapless_monocle      true
 bspc rule -a Org.gnome.Nautilus state=floating
 bspc rule -a Alacritty state=floating
 bspc rule -a KeePassXC state=floating
+bspc rule -a Qemu-system-x86_64 state=floating
+# This should also help the discord bug. I'm not sure if it does either :(
+bspc rule -a discord follow=off

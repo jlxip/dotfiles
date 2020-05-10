@@ -1,4 +1,5 @@
 env:
+  # Fix SSH
   TERM: xterm-256color
 
 window:
