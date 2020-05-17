@@ -96,10 +96,8 @@ label-empty = %icon% %name%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
-ws-icon-0 = I;
-ws-icon-1 = II;阮
-; TODO: Add more
-;ws-icon-default = 
+ws-icon-0 = I;阮
+ws-icon-1 = II;
 
 
 

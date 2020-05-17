@@ -4,41 +4,81 @@
 # INSTALLATION
 #
 
+function installjail {
+	echo "Installing $1 with build jail"
+	installpkg devtools
+
+	cd /tmp
+	git clone https://aur.archlinux.org/$1.git
+	if [[ $? -ne 0 ]]; then
+		echo 'Package does not exist.'
+		exit -1
+	fi
+
+	cd $1
+	extra-x86_64-build
+	echo -e '\n\nBuilt. Installing. Will require sudo.'
+	sudo pacman -U *.zst
+	cd /tmp
+	rm -rf $1
+}
+
 function installpkg {
 	if [[ ! $(pacman -Qe | grep $1) ]]; then
 		if [[ $2 == '' ]]; then
+			echo "Installing $1"
 			sudo pacman -S $1
-		else
+		elif [[ $2 == 'AUR' ]]; then
+			echo "Installing $1 from AUR"
 			yay -S $1
+		elif [[ $2 == 'AUR-jail' ]]; then
+			installjail $1
+		else
+			echo "What is that? $2"
 		fi
-	else
-		echo "Skipping $1"
 	fi
 }
 
-function installjail {
-	if [[ ! $(pacman -Qe | grep $1) ]]; then
-		installpkg devtools
-
-		cd /tmp
-		git clone https://aur.archlinux.org/$1.git
-		cd $1
-		extra-x86_64-build
-		# TODO: make this automatic.
-		echo 'Please execute «sudo pacman -U [tab]»'
-		bash
-		cd /tmp
-		rm -ri $1
-	else
-		echo "Skipping $1"
+function enableservice {
+	systemctl is-active --quiet $1
+	if [ $? -ne 0 ]; then
+		echo "Starting and enabling service $1. Will require sudo."
+		sudo systemctl start $1
+		sudo systemctl enable $1
 	fi
 }
+
+# $1 → source
+# $2 → destination
+SCRIPTPATH=$(dirname $0)
+function linkconfig {
+	if [ ! -h $2 ]; then
+		echo "Linking $2..."
+
+		echo $@ | grep '\-\-no\-mkdir' &> /dev/null
+		if [ $? -ne 0 ]; then
+			mkdir -p $(basename $2)
+		fi
+
+		echo $@ | grep '\-\-sudo' &> /dev/null
+		if [ $? -eq 0 ]; then
+			sudo ln -sf "$SCRIPTPATH/$1" "$2"
+		else
+			ln -sf "$SCRIPTPATH/$1" "$2"
+		fi
+	fi
+}
+
+if [[ $1 == 'jail' ]]; then
+	installjail $2
+	exit 0
+fi
 
 installpkg bspwm				# WM
 installpkg sxhkd				# Keyboard
 installpkg picom				# Compositor
 installpkg nitrogen			# Wallpaper
-installjail polybar			# Top bar
+installpkg polybar AUR-jail	# Top bar
 installpkg alacritty			# Terminal emulator
 installpkg lxappearance		# Customize GTK themes, icons and cursors
 installpkg xorg-xsetroot		# Load cursor at bspwm's boot
@@ -46,21 +86,11 @@ installpkg rofi				# Program launcher
 installpkg numlockx			# Numeric lock at startup
 installpkg i3lock-fancy AUR	# Screen lock
 installpkg papirus-icon-theme	# Icon theme
-installpkg cpcache-git AUR		# Pacman Cache
+installpkg flexo-git AUR		# Pacman Cache
 installpkg ttf-joypixels		# Emoji font
 installpkg gnome-clocks		# Alarms
 installpkg incron				# Notice when a file changes
-
-if [[ ! $(pacman -Qe | grep polybar) ]]; then
-	echo 'Manually install polybar with devtools so no build dependencies get in the way.'
-	echo 'TODO: make this automatic.'
-fi
-
-#
-# DAEMONS
-#
-sudo systemctl enable cpcache
-sudo systemctl enable incrond
+installpkg wmname				# For fixing Java applications (launched by bspwm config)
 
 #
 # SHORT SCRIPTS
@@ -71,26 +101,18 @@ sudo systemctl enable incrond
 # CONFIG
 #
 
-# bspwm
-mkdir -p ~/.config/bspwm 2> /dev/null
-ln -sf $PWD/bspwm/bspwmrc $HOME/.config/bspwm/bspwmrc
-
-# sxhkdrc
-mkdir ~/.config/sxhkd 2> /dev/null
-ln -sf $PWD/sxhkd/sxhkdrc $HOME/.config/sxhkd/sxhkdrc
-
-# alacritty
-mkdir ~/.config/alacritty 2> /dev/null
-ln -sf $PWD/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
-
-# polybar
-mkdir ~/.config/polybar 2> /dev/null
-ln -sf $PWD/polybar/config $HOME/.config/polybar/config
-
-# rofi
-mkdir ~/.config/rofi 2> /dev/null
-ln -sf $PWD/rofi/style.rasi $HOME/.config/rofi/style.rasi
-
+linkconfig 'bspwm/bspwmrc' "$HOME/.config/bspwm/bspwmrc"
+linkconfig 'sxhkd/sxhkdrc' "$HOME/.config/sxhkd/sxhkdrc"
+linkconfig 'alacritty/alacritty.yml' "$HOME/.config/alacritty/alacritty.yml"
+linkconfig 'polybar/config' "$HOME/.config/polybar/config"
+linkconfig 'rofi/style.rasi' "$HOME/.config/rofi/style.rasi"
+linkconfig 'flexo/flexo.toml' '/etc/flexo/flexo.toml' --no-mkdir --sudo
 # TODO: incron config
 
-echo 'Done! :)'
+#
+# DAEMONS
+#
+enableservice flexo
+enableservice incrond
+
+echo ':)'

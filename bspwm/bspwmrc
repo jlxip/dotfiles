@@ -21,13 +21,14 @@ polybar main &
 if [ $n_monitors -eq 2 ]; then
 	# Wait before launching the second bar so that
 	# the system tray appears in the main one.
-	bash -c "sleep 1; polybar second" &
+	bash -c "sleep 2; polybar second" &
 fi
 fcitx &
 numlockx &
 protonmail-bridge --no-window &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 telegram-desktop -startintray &
+wmname compiz & # Fix Java applications
 
 #
 # TOUCHPAD THINGS
@@ -48,8 +49,8 @@ if [ $n_monitors -eq 1 ]; then
 else
 	# Desktop
 	# If at some point fails, run xrandr here.
-	bspc monitor DisplayPort-1 -d I III V VII IX
-	bspc monitor HDMI-A-1 -d II IV VI VIII X
+	bspc monitor HDMI-A-1 -d I III V VII IX
+	bspc monitor DisplayPort-1 -d II IV VI VIII X
 fi
 
 #

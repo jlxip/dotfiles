@@ -1,0 +1,15 @@
+cache_directory = "/var/cache/flexo/pkg"
+mirrorlist_fallback_file = "/var/cache/flexo/state/mirrorlist"
+port = 9434
+mirror_selection_method = "auto"
+mirrors_predefined = []
+[mirrors_auto]
+    mirrors_status_json_endpoint = "https://www.archlinux.org/mirrors/status/json/"
+    mirrors_blacklist = [ ]
+    https_required = true
+    ipv4 = true
+    ipv6 = true
+    max_score = 2.5
+    num_mirrors = 8
+    mirrors_random_or_sort = "sort"
+    timeout = 350
