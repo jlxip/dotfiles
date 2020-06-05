@@ -6,7 +6,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (emojify doom-themes all-the-icons treemacs magit htmlize org-bullets centaur-tabs use-package))))
+    (multiple-cursors multiple-cursor emojify doom-themes all-the-icons treemacs magit htmlize org-bullets centaur-tabs use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

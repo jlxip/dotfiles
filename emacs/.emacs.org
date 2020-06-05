@@ -23,13 +23,11 @@ Of course, it's the first thing that has to be executed.
 (setq use-package-always-ensure t)
 #+END_SRC
 
-
 * Theme
 #+BEGIN_SRC emacs-lisp
 (use-package doom-themes)
 (load-theme 'doom-dracula t)
 #+END_SRC
-
 
 * Tabs
 Some parts here come from: https://dougie.io/emacs/indentation/
@@ -98,12 +96,10 @@ Some parts here come from: https://dougie.io/emacs/indentation/
 (global-whitespace-mode) ; Enable whitespace mode everywhere
 #+END_SRC
 
-
 * Font
 #+BEGIN_SRC emacs-lisp
 (set-face-attribute 'default nil :height 160)
 #+END_SRC
-
 
 * Packages
 ** All The Icons
@@ -156,12 +152,19 @@ Some parts here come from: https://dougie.io/emacs/indentation/
 (use-package emojify)
 (add-hook 'after-init-hook #'global-emojify-mode)
 #+END_SRC
+** Multiple cursors
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "C-<down-mouse-1>"))
+(use-package multiple-cursors
+  :bind (("C-c m c" . mc/edit-lines)
+         ("C-<mouse-1>" . mc/add-cursor-on-click)))
+#+END_SRC
+
 ** Others that do not require config
 #+BEGIN_SRC emacs-lisp
 (use-package htmlize
   :defer t)
 #+END_SRC
-
 
 * Changes at bootup (*scratch* and so)
 https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
@@ -199,7 +202,6 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 (add-hook 'window-setup-hook 'delete-other-windows)
 #+END_SRC
 
-
 * Usage
 ** Always ask y/n, never yes/no.
 #+BEGIN_SRC emacs-lisp
@@ -211,7 +213,11 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 (setq org-support-shift-select t)
 #+END_SRC
 
-
+** Aliases
+*** rs = replace-string
+#+BEGIN_SRC emacs-lisp
+(defalias 'rs 'replace-string)
+#+END_SRC
 * General settings
 ** Hide toolbar
 #+BEGIN_SRC emacs-lisp
