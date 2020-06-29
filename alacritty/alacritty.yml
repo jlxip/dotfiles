@@ -23,4 +23,8 @@ cursor:
   style: Block
   unfocused_hollow: true
 
-# Mouse configuration goes here, in case I want to change it at some point.
+shell:
+  program: /bin/zsh
+  args:
+    - -c
+    - tmux

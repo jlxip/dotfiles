@@ -91,11 +91,13 @@ installpkg ttf-joypixels		# Emoji font
 installpkg gnome-clocks		# Alarms
 installpkg incron				# Notice when a file changes
 installpkg wmname				# For fixing Java applications (launched by bspwm config)
+installpkg syncthing			# Synchronize devices
+#installpkg plymouth-theme-green-blocks-git AUR
 
 #
 # SHORT SCRIPTS
 #
-# TODO
+linkconfig 'scripts' "$HOME/scripts"
 
 #
 # CONFIG

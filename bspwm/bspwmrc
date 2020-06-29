@@ -30,6 +30,11 @@ protonmail-bridge --no-window &
 telegram-desktop -startintray &
 wmname compiz & # Fix Java applications
 
+which syncthing &> /dev/null
+if [ $? -eq 0 ]; then
+	syncthing -no-browser &
+fi
+
 #
 # TOUCHPAD THINGS
 #
