@@ -38,7 +38,7 @@ super + e
 
 # Lock screen
 ctrl + alt + l
-	i3lock-fancy -g -f "Hack-Regular-Nerd-Font-Complete"
+	betterlockscreen -l pixel
 
 # Useless stuff
 Pause

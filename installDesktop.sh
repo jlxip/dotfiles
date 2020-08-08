@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 #
 # INSTALLATION
 #
@@ -74,24 +76,23 @@ if [[ $1 == 'jail' ]]; then
 	exit 0
 fi
 
-installpkg bspwm				# WM
-installpkg sxhkd				# Keyboard
-installpkg picom				# Compositor
-installpkg nitrogen			# Wallpaper
-installpkg polybar AUR-jail	# Top bar
-installpkg alacritty			# Terminal emulator
-installpkg lxappearance		# Customize GTK themes, icons and cursors
-installpkg xorg-xsetroot		# Load cursor at bspwm's boot
-installpkg rofi				# Program launcher
-installpkg numlockx			# Numeric lock at startup
-installpkg i3lock-fancy AUR	# Screen lock
-installpkg papirus-icon-theme	# Icon theme
-installpkg flexo-git AUR		# Pacman Cache
-installpkg ttf-joypixels		# Emoji font
-installpkg gnome-clocks		# Alarms
-installpkg incron				# Notice when a file changes
-installpkg wmname				# For fixing Java applications (launched by bspwm config)
-installpkg syncthing			# Synchronize devices
+installpkg bspwm					# WM
+installpkg sxhkd					# Keyboard
+installpkg picom					# Compositor
+installpkg nitrogen				# Wallpaper
+installpkg polybar AUR-jail		# Top bar
+installpkg alacritty				# Terminal emulator
+installpkg lxappearance			# Customize GTK themes, icons and cursors
+installpkg xorg-xsetroot			# Load cursor at bspwm's boot
+installpkg rofi					# Program launcher
+installpkg numlockx				# Numeric lock at startup
+installpkg betterlockscreen AUR	# Screen lock
+installpkg papirus-icon-theme		# Icon theme
+installpkg ttf-joypixels			# Emoji font
+installpkg gnome-clocks			# Alarms
+installpkg incron					# Notice when a file changes
+installpkg wmname					# For fixing Java applications (launched by bspwm config)
+installpkg syncthing				# Synchronize devices
 #installpkg plymouth-theme-green-blocks-git AUR
 
 #
@@ -108,13 +109,12 @@ linkconfig 'sxhkd/sxhkdrc' "$HOME/.config/sxhkd/sxhkdrc"
 linkconfig 'alacritty/alacritty.yml' "$HOME/.config/alacritty/alacritty.yml"
 linkconfig 'polybar/config' "$HOME/.config/polybar/config"
 linkconfig 'rofi/style.rasi' "$HOME/.config/rofi/style.rasi"
-linkconfig 'flexo/flexo.toml' '/etc/flexo/flexo.toml' --no-mkdir --sudo
+linkconfig 'picom/picom.conf' "$HOME/.config/picom/picom.conf"
 # TODO: incron config
 
 #
 # DAEMONS
 #
-enableservice flexo
 enableservice incrond
 
 echo ':)'
