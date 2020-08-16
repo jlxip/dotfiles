@@ -109,7 +109,6 @@ linkconfig 'sxhkd/sxhkdrc' "$HOME/.config/sxhkd/sxhkdrc"
 linkconfig 'alacritty/alacritty.yml' "$HOME/.config/alacritty/alacritty.yml"
 linkconfig 'polybar/config' "$HOME/.config/polybar/config"
 linkconfig 'rofi/style.rasi' "$HOME/.config/rofi/style.rasi"
-linkconfig 'picom/picom.conf' "$HOME/.config/picom/picom.conf"
 # TODO: incron config
 
 #

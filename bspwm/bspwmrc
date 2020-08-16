@@ -15,7 +15,7 @@ fi
 sxhkd &
 setxkbmap es &
 xsetroot -cursor_name left_ptr &
-compton &
+picom &
 nitrogen --restore &
 polybar main &
 if [ $n_monitors -eq 2 ]; then
