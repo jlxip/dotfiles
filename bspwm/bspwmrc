@@ -75,6 +75,8 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 # This is meant to help with the electron-based apps bug, but I think it doesn't :(
 bspc config ignore_ewmh_focus true
+# Grab the mouse events at 144Hz, which makes window movement/resizing much smoother.
+bspc config pointer_motion_interval 7
 
 #
 # CUSTOM PROGRAMS CONFIG
