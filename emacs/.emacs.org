@@ -24,11 +24,15 @@ Of course, it's the first thing that has to be executed.
 #+END_SRC
 
 * Theme
+** doom-dracula
 #+BEGIN_SRC emacs-lisp
 (use-package doom-themes)
 (load-theme 'doom-dracula t)
 #+END_SRC
-
+** gruvbox-dark-soft
+#+begin_src emacs-lisp
+;(load-theme 'gruvbox-dark-soft t)
+#+end_src
 * Tabs
 Some parts here come from: https://dougie.io/emacs/indentation/
 ** Size
@@ -208,11 +212,19 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
-** Use shift key in ORG mode
+** ORG
+*** Use shift key in ORG mode
 #+BEGIN_SRC emacs-lisp
 (setq org-support-shift-select t)
 #+END_SRC
-
+*** Get back the "<s" in ORG
+#+BEGIN_SRC emacs-lisp
+(require 'org-tempo)
+#+END_SRC
+*** Indent mode
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+#+end_src
 ** Aliases
 *** rs = replace-string
 #+BEGIN_SRC emacs-lisp
