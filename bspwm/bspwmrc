@@ -29,11 +29,14 @@ protonmail-bridge --no-window &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 telegram-desktop -startintray &
 wmname compiz & # Fix Java applications
+/usr/lib/notification-daemon-1.0/notification-daemon &	# (Gnome) notification daemon
 
 which syncthing &> /dev/null
 if [ $? -eq 0 ]; then
 	syncthing -no-browser &
 fi
+
+xset -dpms s off	# Do not turn off the screen!
 
 #
 # TOUCHPAD THINGS
