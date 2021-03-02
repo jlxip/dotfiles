@@ -1,5 +1,9 @@
 When this is changed, remove "~/.emacs.el".
 
+#+begin_export emacs-lisp
+(setq custom-file null-device)
+#+end_export
+
 * Install
 This is for installing all packages during a fresh setup :)
 Of course, it's the first thing that has to be executed.
@@ -100,6 +104,15 @@ Some parts here come from: https://dougie.io/emacs/indentation/
 (global-whitespace-mode) ; Enable whitespace mode everywhere
 #+END_SRC
 
+* Languages
+** ASM
+*** No weird comments
+https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comment-in-assembly
+#+begin_src emacs-lisp
+  (defun my-asm-hook ()
+    (local-set-key ";" nil))
+  (add-hook 'asm-mode-hook 'my-asm-hook)
+#+end_src
 * Font
 #+BEGIN_SRC emacs-lisp
 (set-face-attribute 'default nil :height 160)
