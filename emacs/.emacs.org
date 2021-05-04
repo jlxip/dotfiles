@@ -12,7 +12,7 @@ Of course, it's the first thing that has to be executed.
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
+;(package-initialize)
 #+END_SRC
 ** Install use-package
 #+BEGIN_SRC emacs-lisp
@@ -28,15 +28,17 @@ Of course, it's the first thing that has to be executed.
 #+END_SRC
 
 * Theme
-** doom-dracula
-#+BEGIN_SRC emacs-lisp
-(use-package doom-themes)
-(load-theme 'doom-dracula t)
-#+END_SRC
-** gruvbox-dark-soft
+** Doom suite
 #+begin_src emacs-lisp
-;(load-theme 'gruvbox-dark-soft t)
+(use-package doom-themes)
 #+end_src
+*** acario-dark
+*** challenger-deep
+*** oceanic-next
+*** outrun-electric
+#+BEGIN_SRC emacs-lisp
+(load-theme 'doom-outrun-electric t)
+#+END_SRC
 * Tabs
 Some parts here come from: https://dougie.io/emacs/indentation/
 ** Size
@@ -238,6 +240,10 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook 'org-indent-mode)
 #+end_src
+*** Start up folded
+#+begin_src emacs-lisp
+(setq org-startup-folded t)
+#+end_src
 ** Aliases
 *** rs = replace-string
 #+BEGIN_SRC emacs-lisp
@@ -267,3 +273,8 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 #+BEGIN_SRC emacs-lisp
 (setq org-startup-truncated nil)
 #+END_SRC
+** 80 columns ruler
+#+begin_src emacs-lisp
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+(setq-default display-fill-column-indicator-column 80)
+#+end_src
