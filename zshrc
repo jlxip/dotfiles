@@ -53,7 +53,10 @@ alias RM="/usr/bin/rm"
 alias e='emacs --no-x-resources -nw'
 alias py='python3'
 alias juan='john'
+alias dssh='/home/jlxip/scripts/sshdocker.sh'
 
 # jotaOS
 export jotaOS_stdlib_path=/home/jlxip/git/jotaOS/stdlib
 export jotaOS_stdlib_headers_path=/home/jlxip/git/jotaOS/stdlib/headers
+
+alias raurr='ping -O 192.168.0.1'
