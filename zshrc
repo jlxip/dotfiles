@@ -34,6 +34,7 @@ export PATH="$HOME/opt/cross/bin:$PATH"
 export PATH="$PATH:/opt/go/bin"
 export PATH="$PATH:/home/jlxip/.local/bin"
 export PATH="$PATH:/home/jlxip/.gem/ruby/2.7.0/bin"
+export PATH="$PATH:$HOME/scripts"
 
 # Default edito is nano
 export EDITOR="nano"
@@ -54,9 +55,8 @@ alias e='emacs --no-x-resources -nw'
 alias py='python3'
 alias juan='john'
 alias dssh='/home/jlxip/scripts/sshdocker.sh'
+alias raurr='ping -O 192.168.0.1'
 
 # jotaOS
-export jotaOS_stdlib_path=/home/jlxip/git/jotaOS/stdlib
-export jotaOS_stdlib_headers_path=/home/jlxip/git/jotaOS/stdlib/headers
-
-alias raurr='ping -O 192.168.0.1'
+#export JOTAOS_STDLIB_HEADERS=/home/jlxip/git/jotaOS/jotaOS/projects/stdlib
+#export jotaOS_stdlib_headers_path=/home/jlxip/git/jotaOS/jotaOS/projects/stdlib/pubheaders

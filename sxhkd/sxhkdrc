@@ -49,6 +49,11 @@ super + Print
 super + e
 	nautilus --new-window
 
+# Firefox
+ctrl + super + alt + space
+	$HOME/scripts/firefox.sh
+
+
 # Lock screen
 ctrl + alt + l
 	betterlockscreen -l pixel
@@ -62,6 +67,8 @@ super + shift + Pause
 	mplayer /opt/tada.mp3
 shift + Pause
 	mplayer /opt/vine_boom.mp3
+alt + Pause
+	mplayer /opt/wow.mp3
 
 # make sxhkd reload its configuration files:
 super + Escape

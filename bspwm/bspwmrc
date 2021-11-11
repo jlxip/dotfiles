@@ -30,6 +30,7 @@ protonmail-bridge --no-window &
 telegram-desktop -startintray &
 wmname compiz & # Fix Java applications
 /usr/lib/notification-daemon-1.0/notification-daemon &	# (Gnome) notification daemon
+megasync &
 
 which syncthing &> /dev/null
 if [ $? -eq 0 ]; then
