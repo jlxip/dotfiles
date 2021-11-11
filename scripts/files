@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# What configuration files does a package have?
+
+set -e
+
+if [ $# -ne 1 ]; then
+	echo "Usage: $(basename $0) <package>"
+	exit 1
+fi
+
+. /etc/lsb-release
+if [ "$DISTRIB_ID" = 'Arch' ]; then
+	temp=$(mktemp)
+	LANG=C pacman -Qii "$1" > $temp
+
+	LINE=$(cat $temp | grep -n "Backup Files" | cut -d':' -f1)
+	LINES=$(cat $temp | wc -l)
+	cat $temp | tail -n +$((LINE + 1)) | head -n -1
+
+	rm $temp
+fi

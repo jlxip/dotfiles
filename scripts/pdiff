@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Like diff, but with program outputs instead of files
+
+if [ $# -ne 2 ]; then
+	echo "Usage: $(basename $0) \"program\" \"program\""
+	exit 1
+fi
+
+temp1=$(mktemp)
+temp2=$(mktemp)
+
+$1 > $temp1
+$2 > $temp2
+
+if [ -z "$diff" ]; then
+	which colordiff > /dev/null
+	if [ $? -ne 0 ]; then
+		diff=diff
+	else
+		diff=colordiff
+	fi
+fi
+
+$diff $temp1 $temp2
+
+rm -f $temp1 $temp2
