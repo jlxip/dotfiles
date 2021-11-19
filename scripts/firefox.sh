@@ -1,5 +1,5 @@
 #!/bin/bash
-bruh="$(ps -e | egrep 'firefox$')"
+bruh="$(ps x | grep firefox | grep -v grep)"
 if [ -z "$bruh" ]; then
 	firefox &
 	disown

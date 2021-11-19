@@ -115,6 +115,12 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
     (local-set-key ";" nil))
   (add-hook 'asm-mode-hook 'my-asm-hook)
 #+end_src
+*** No tabs in assembly
+#+begin_src emacs-lisp
+  (defun asm-no-tabs ()
+    (setq indent-tabs-mode nil))
+  (add-hook 'asm-mode-hook 'asm-no-tabs)
+#+end_src
 * Font
 #+BEGIN_SRC emacs-lisp
 (set-face-attribute 'default nil :height 160)
