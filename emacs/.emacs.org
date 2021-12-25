@@ -125,7 +125,6 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+BEGIN_SRC emacs-lisp
 (set-face-attribute 'default nil :height 160)
 #+END_SRC
-
 * Packages
 ** All The Icons
 #+BEGIN_SRC emacs-lisp
@@ -191,6 +190,11 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
   :defer t)
 #+END_SRC
 
+** Tramp
+#+begin_src emacs-lisp
+  (require 'tramp)
+  (setq tramp-default-method "ssh")
+#+end_src
 * Changes at bootup (*scratch* and so)
 https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
 ** Empty *scratch*
@@ -212,11 +216,11 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 #+END_SRC
 ** Kill *Completions* after opening a file
 #+BEGIN_SRC emacs-lisp
-(add-hook 'minibuffer-exit-hook
-      '(lambda ()
-         (let ((buffer "*Completions*"))
-           (and (get-buffer buffer)
-                (kill-buffer buffer)))))
+  (add-hook 'minibuffer-exit-hook
+        '(lambda ()
+           (let ((buffer "*Completions*"))
+             (and (get-buffer buffer)
+                  (kill-buffer buffer)))))
 #+END_SRC
 ** Do not show *Buffer list* when opening more than one file at a time
 #+BEGIN_SRC emacs-lisp
@@ -232,7 +236,10 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 #+BEGIN_SRC emacs-lisp
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
-
+** Always follow symlinks
+#+begin_src emacs-lisp
+(setq vc-follow-symlinks t)
+#+end_src
 ** ORG
 *** Use shift key in ORG mode
 #+BEGIN_SRC emacs-lisp
@@ -255,6 +262,27 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 #+BEGIN_SRC emacs-lisp
 (defalias 'rs 'replace-string)
 #+END_SRC
+** ~delete-by-moving-to-trash~
+I don't know if this is global or just for ~delete-file~. Anyway, I'm not gonna regret having this.
+#+begin_src emacs-lisp
+  (setq delete-by-moving-to-trash t)
+#+end_src
+** Key shortcuts
+*** Escape shortcuts
+**** Remove compiled configuration with "Esc Esc R"
+#+begin_src emacs-lisp
+  (global-set-key (kbd "\e\er")
+    (lambda () (interactive)
+      (delete-file "~/.emacs.el" t)
+          (message "~/.emacs.el removed")))
+#+end_src
+**** Open this config with "Esc Esc C"
+Got the idea from here: https://www.youtube.com/watch?v=Iqh50fgbIVk
+#+begin_src emacs-lisp
+  (global-set-key (kbd "\e\ec")
+    (lambda () (interactive)
+          (find-file "~/.emacs.org")))
+#+end_src
 * General settings
 ** Hide toolbar
 #+BEGIN_SRC emacs-lisp
