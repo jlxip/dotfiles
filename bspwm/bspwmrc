@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 #
 # MONITOR CONFIGURATION
@@ -6,7 +6,7 @@
 n_monitors=$(xrandr -q | grep -w connected | wc -l)
 if [ $n_monitors -eq 2 ]; then
 	xrandr --output DisplayPort-1 --primary
-	xrandr --output HDMI-A-1 --left-of DisplayPort-1
+	xrandr --output HDMI-A-3 --left-of DisplayPort-1
 fi
 
 #
@@ -65,7 +65,7 @@ if [ $n_monitors -eq 1 ]; then
 else
 	# Desktop
 	# If at some point fails, run xrandr here.
-	bspc monitor HDMI-A-1 -d I III V VII IX
+	bspc monitor HDMI-A-3 -d I III V VII IX
 	bspc monitor DisplayPort-1 -d II IV VI VIII X
 fi
 

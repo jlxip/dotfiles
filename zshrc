@@ -6,15 +6,24 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_icon dir dir_writable)
 
-if [ "$(hostname)" = 'Alpha' ]; then
+# Default (might be overriden later)
+POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=015
+
+HOSTNAME="$(cat /etc/hostname)"
+if [ ! -z "$TORMODE" ]; then
+	aux="$(curl https://check.torproject.org/ 2>/dev/null | grep Congratulations | wc -l)"
+	if [ ! "$aux" -eq 0 ]; then
+	   POWERLEVEL9K_CUSTOM_ICON='echo '
+	   POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=0
+	   POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=082
+	fi
+elif [ "$HOSTNAME" = 'Alpha' ]; then
 	POWERLEVEL9K_CUSTOM_ICON='echo α'
 	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
-elif [ "$(hostname)" = 'stronghold' ]; then
+elif [ "$HOSTNAME" = 'stronghold' ]; then
 	POWERLEVEL9K_CUSTOM_ICON='echo '
 	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=1
 fi
-
-POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=015
 
 POWERLEVEL9K_DIR_HOME_BACKGROUND=75
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND=75
@@ -28,6 +37,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 export LC_CTYPE=es_ES.UTF-8
+export TERM=xterm-256color
 
 # PATH
 export PATH="$HOME/opt/cross/bin:$PATH"
@@ -56,6 +66,10 @@ alias py='python3'
 alias juan='john'
 alias dssh='/home/jlxip/scripts/sshdocker.sh'
 alias raurr='ping -O 192.168.0.1'
+alias gotor='TORMODE=1 torsocks --shell'
+alias govenv='source venv/bin/activate'
+alias ayo='sudo /home/jlxip/scripts/ayo.sh'
+alias kubectl='kubecolor'
 
 # jotaOS
 #export JOTAOS_STDLIB_HEADERS=/home/jlxip/git/jotaOS/jotaOS/projects/stdlib

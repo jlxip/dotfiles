@@ -10,7 +10,7 @@ if [ $# -ne 1 ]; then
 fi
 
 . /etc/lsb-release
-if [ "$DISTRIB_ID" = 'Arch' ]; then
+if [ "$DISTRIB_ID" = 'Arch' -o "$DISTRIB_ID" = 'Artix' ]; then
 	temp=$(mktemp)
 	LANG=C pacman -Qii "$1" > $temp
 

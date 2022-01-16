@@ -24,7 +24,7 @@ cursor:
   unfocused_hollow: true
 
 shell:
-  program: /bin/zsh
+  program: zsh
   args:
     - -c
     - tmux
