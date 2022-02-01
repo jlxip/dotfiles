@@ -20,4 +20,8 @@ case "$1" in
 	unram)
 		sudo umount $RAMMOUNT
 	;;
+	remount)
+		sudo mkdir -p /run/media/jlxip/{,Fast}Data
+		sudo mount -a
+	;;
 esac

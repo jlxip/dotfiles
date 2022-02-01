@@ -123,7 +123,7 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+end_src
 * Font
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :height 160)
+  (set-face-attribute 'default nil :font "Hack Nerd Font" :height 160)
 #+END_SRC
 * Packages
 ** All The Icons

@@ -17,6 +17,9 @@ if [ ! -z "$TORMODE" ]; then
 	   POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=0
 	   POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=082
 	fi
+elif [ ! -z "$VENV" ]; then
+	POWERLEVEL9K_CUSTOM_ICON='echo '
+	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=070
 elif [ "$HOSTNAME" = 'Alpha' ]; then
 	POWERLEVEL9K_CUSTOM_ICON='echo α'
 	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
@@ -67,7 +70,9 @@ alias juan='john'
 alias dssh='/home/jlxip/scripts/sshdocker.sh'
 alias raurr='ping -O 192.168.0.1'
 alias gotor='TORMODE=1 torsocks --shell'
-alias govenv='source venv/bin/activate'
+# This is disgusting
+alias mkvenv='mkdir venv && python3 -m venv venv'
+alias govenv='VENV=true bash -c "source venv/bin/activate && zsh"'
 alias ayo='sudo /home/jlxip/scripts/ayo.sh'
 alias kubectl='kubecolor'
 
