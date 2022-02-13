@@ -13,9 +13,11 @@ HOSTNAME="$(cat /etc/hostname)"
 if [ ! -z "$TORMODE" ]; then
 	aux="$(curl https://check.torproject.org/ 2>/dev/null | grep Congratulations | wc -l)"
 	if [ ! "$aux" -eq 0 ]; then
-	   POWERLEVEL9K_CUSTOM_ICON='echo '
-	   POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=0
-	   POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=082
+		POWERLEVEL9K_CUSTOM_ICON='echo '
+		POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=0
+		POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=082
+	else
+		echo 'Dayum'
 	fi
 elif [ ! -z "$VENV" ]; then
 	POWERLEVEL9K_CUSTOM_ICON='echo '
