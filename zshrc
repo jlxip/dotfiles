@@ -28,6 +28,9 @@ elif [ "$HOSTNAME" = 'Alpha' ]; then
 elif [ "$HOSTNAME" = 'stronghold' ]; then
 	POWERLEVEL9K_CUSTOM_ICON='echo '
 	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=1
+elif [ "$(hostname)" = 'Beta' ]; then
+	POWERLEVEL9K_CUSTOM_ICON='echo β'
+	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
 fi
 
 POWERLEVEL9K_DIR_HOME_BACKGROUND=75
