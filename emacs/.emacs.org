@@ -376,3 +376,8 @@ Got the idea from here: https://www.youtube.com/watch?v=Iqh50fgbIVk
   (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines))
 #+end_src
+** Don't go crazy on macOS
+#+begin_src emacs-lisp
+(when (eq system-type 'darwin)
+  (setq mac-right-option-modifier 'none))
+#+end_src
