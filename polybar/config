@@ -30,7 +30,7 @@ module-margin-right = 2
 font-0 = Hack Nerd Font:pixelsize=12
 modules-left = bspwm
 modules-center = date
-modules-right = filesystem xbacklight pulseaudio memory cpu wlan eth battery temperature powermenu
+modules-right = filesystem xbacklight pulseaudio memory cpu wlan eth battery powermenu
 tray-position = right
 tray-padding = 2
 wm-restack = bspwm
@@ -265,24 +265,6 @@ animation-discharging-0 =
 ;animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
-
-
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = 﨎 <label>
-format-underline = #f50a4d
-format-warn = <label-warn>
-format-warn-underline = ${self.format-underline}
-
-label = bruh
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
-ramp-foreground = ${colors.foreground-alt}
 
 
 

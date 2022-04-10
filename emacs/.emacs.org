@@ -7,13 +7,21 @@ When this is changed, remove "~/.emacs.el".
 * Install
 This is for installing all packages during a fresh setup :)
 Of course, it's the first thing that has to be executed.
-** Prepare MELPA
+** Repositories
+*** MELPA
 #+BEGIN_SRC emacs-lisp
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-;(package-initialize)
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 #+END_SRC
+*** Non-GNU
+This is just for the ~org-contrib~ package.
+#+begin_src emacs-lisp
+  ;(with-eval-after-load 'package
+  ;        (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+
+  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
+#+end_src
 ** Install use-package
 #+BEGIN_SRC emacs-lisp
 (unless (package-installed-p 'use-package)
@@ -240,23 +248,6 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 #+begin_src emacs-lisp
 (setq vc-follow-symlinks t)
 #+end_src
-** ORG
-*** Use shift key in ORG mode
-#+BEGIN_SRC emacs-lisp
-(setq org-support-shift-select t)
-#+END_SRC
-*** Get back the "<s" in ORG
-#+BEGIN_SRC emacs-lisp
-(require 'org-tempo)
-#+END_SRC
-*** Indent mode
-#+begin_src emacs-lisp
-(add-hook 'org-mode-hook 'org-indent-mode)
-#+end_src
-*** Start up folded
-#+begin_src emacs-lisp
-(setq org-startup-folded t)
-#+end_src
 ** Aliases
 *** rs = replace-string
 #+BEGIN_SRC emacs-lisp
@@ -311,4 +302,77 @@ Got the idea from here: https://www.youtube.com/watch?v=Iqh50fgbIVk
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (setq-default display-fill-column-indicator-column 80)
+#+end_src
+
+* ORG
+** Use shift key in ORG mode
+#+BEGIN_SRC emacs-lisp
+(setq org-support-shift-select t)
+#+END_SRC
+** Get back the "<s" in ORG
+#+BEGIN_SRC emacs-lisp
+(require 'org-tempo)
+#+END_SRC
+** Indent mode
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+#+end_src
+** Start up folded
+#+begin_src emacs-lisp
+(setq org-startup-folded t)
+#+end_src
+** Templates (LaTeX_CLASS)
+*** Robótica Industrial
+#+begin_src emacs-lisp
+  (with-eval-after-load 'ox-latex
+    (add-to-list 'org-latex-classes
+      '("RI"
+        "\\documentclass[12pt,a4paper]{report}
+             \\usepackage[spanish]{babel}
+             \\usepackage[T1]{fontenc}
+             \\usepackage[utf8]{inputenc}
+             \\usepackage{amsmath}
+             \\usepackage{graphicx}
+             \\usepackage[page]{appendix}
+             \\usepackage{listings}
+             \\usepackage{color}
+
+             \\usepackage{gensymb}
+             \\graphicspath{ {./imgs/} }
+
+             \\renewcommand\\appendixpagename{Archivos de código}
+             \\DeclareFixedFont{\\ttb}{T1}{txtt}{bx}{n}{9}
+             \\DeclareFixedFont{\\ttm}{T1}{txtt}{m}{n}{9}
+             \\DeclareFixedFont{\\tti}{T1}{txtt}{m}{it}{9}
+             \\definecolor{comment}{RGB}{150,150,150}
+
+             \\lstset{
+                     frame = single,
+                     extendedchars=true,
+                     showstringspaces=false,
+                     inputencoding=utf8,
+                     literate={á}{{\\'a}}1 {é}{{\\'e}}1 {í}{{\\'i}}1 {ó}{{\\'o}}1 {ú}{{\\'u}}1 {ñ}{{\\~n}}1
+                     {Á}{{\\'A}}1 {É}{{\\'E}}1 {Í}{{\\'I}}1 {Ó}{{\\'O}}1 {Ú}{{\\'U}}1 {Ñ}{{\\~N}}1,
+                     language=Python,
+                     basicstyle=\\ttm,
+                     otherkeywords={self},
+                     keywordstyle=\\ttb,
+                     commentstyle=\\tti\\color{comment}
+             }
+             [NO-DEFAULT-PACKAGES]
+             [NO-PACKAGES]"
+            ("\\section*{%s}" . "\\section*{%s}"))))
+#+end_src
+
+** No hyperref
+#+begin_src emacs-lisp
+(setq org-latex-with-hyperref nil)
+#+end_src
+** Extras
+*** ox-extra
+#+begin_src emacs-lisp
+  (package-install 'org-contrib)
+
+  (require 'ox-extra)
+  (ox-extras-activate '(ignore-headlines))
 #+end_src
