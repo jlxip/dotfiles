@@ -9,8 +9,12 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_icon dir dir_writable)
 # Default (might be overriden later)
 POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=015
 
-#HOSTNAME="$(cat /etc/hostname)"
-HOSTNAME="$(hostname)"
+if [ "$(uname)" = 'Linux' ]; then
+	HOSTNAME="$(cat /etc/hostname)"
+else
+	HOSTNAME="$(hostname)"
+fi
+
 if [ ! -z "$TORMODE" ]; then
 	aux="$(curl https://check.torproject.org/ 2>/dev/null | grep Congratulations | wc -l)"
 	if [ ! "$aux" -eq 0 ]; then
@@ -36,6 +40,9 @@ elif [ "$(hostname)" = 'Beta' ]; then
 elif [ "$HOSTNAME" = 'Gamma' ]; then
 	POWERLEVEL9K_CUSTOM_ICON='echo γ'
 	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
+else
+	POWERLEVEL9K_CUSTOM_ICON='echo "?"'
+	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=1
 fi
 
 POWERLEVEL9K_DIR_HOME_BACKGROUND=75
