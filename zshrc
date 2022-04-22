@@ -4,45 +4,56 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
 
 POWERLEVEL9K_DISABLE_RPROMPT=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_icon dir dir_writable)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_host custom_root custom_tor custom_venv dir dir_writable)
 
-# Default (might be overriden later)
-POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=015
+POWERLEVEL9K_CUSTOM_HOST_FOREGROUND=015
 
 if [ "$(uname)" = 'Linux' ]; then
-	HOSTNAME="$(cat /etc/hostname)"
+    HOSTNAME="$(cat /etc/hostname)"
 else
-	HOSTNAME="$(hostname)"
+    HOSTNAME="$(hostname)"
+fi
+
+if [ "$HOSTNAME" = 'Alpha' ]; then
+    POWERLEVEL9K_CUSTOM_HOST='echo α'
+    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
+elif [ "$HOSTNAME" = 'stronghold' ]; then
+    POWERLEVEL9K_CUSTOM_HOST='echo '
+    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=1
+elif [ "$(hostname)" = 'Beta' ]; then
+    # Deprecated
+    POWERLEVEL9K_CUSTOM_HOST='echo β'
+    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
+elif [ "$HOSTNAME" = 'Gamma' ]; then
+    POWERLEVEL9K_CUSTOM_HOST='echo γ'
+    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
+else
+    # Where am I?
+    POWERLEVEL9K_CUSTOM_HOST='echo "?"'
+    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=1
+fi
+
+if [ "$(whoami)" = 'root' ]; then
+   POWERLEVEL9K_CUSTOM_ROOT='echo "#"'
+   POWERLEVEL9K_CUSTOM_ROOT_BACKGROUND=1
+   POWERLEVEL9K_CUSTOM_ROOT_FOREGROUND=015
 fi
 
 if [ ! -z "$TORMODE" ]; then
-	aux="$(curl https://check.torproject.org/ 2>/dev/null | grep Congratulations | wc -l)"
-	if [ ! "$aux" -eq 0 ]; then
-		POWERLEVEL9K_CUSTOM_ICON='echo '
-		POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=0
-		POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=082
-	else
-		echo 'Dayum'
-	fi
-elif [ ! -z "$VENV" ]; then
-	POWERLEVEL9K_CUSTOM_ICON='echo '
-	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=070
-elif [ "$HOSTNAME" = 'Alpha' ]; then
-	POWERLEVEL9K_CUSTOM_ICON='echo α'
-	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
-elif [ "$HOSTNAME" = 'stronghold' ]; then
-	POWERLEVEL9K_CUSTOM_ICON='echo '
-	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=1
-elif [ "$(hostname)" = 'Beta' ]; then
-	# Deprecated
-	POWERLEVEL9K_CUSTOM_ICON='echo β'
-	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
-elif [ "$HOSTNAME" = 'Gamma' ]; then
-	POWERLEVEL9K_CUSTOM_ICON='echo γ'
-	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
-else
-	POWERLEVEL9K_CUSTOM_ICON='echo "?"'
-	POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=1
+   aux="$(curl https://check.torproject.org/ 2>/dev/null | grep Congratulations | wc -l)"
+   if [ ! "$aux" -eq 0 ]; then
+       POWERLEVEL9K_CUSTOM_TOR='echo '
+       POWERLEVEL9K_CUSTOM_TOR_BACKGROUND=0
+       POWERLEVEL9K_CUSTOM_TOR_FOREGROUND=082
+   else
+       echo 'Dayum'
+   fi
+fi
+
+if [ ! -z "$VENV" ]; then
+    POWERLEVEL9K_CUSTOM_VENV='echo '
+    POWERLEVEL9K_CUSTOM_VENV_BACKGROUND=070
+    POWERLEVEL9K_CUSTOM_VENV_FOREGROUND=015
 fi
 
 POWERLEVEL9K_DIR_HOME_BACKGROUND=75
