@@ -103,6 +103,7 @@ alias mkvenv='mkdir venv && python3 -m venv venv'
 alias govenv='VENV=true bash -c "source venv/bin/activate && zsh"'
 alias ayo='sudo /home/jlxip/scripts/ayo.sh'
 alias kubectl='kubecolor'
+alias updatedocker='sudo docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower -R'
 
 # jotaOS
 #export JOTAOS_STDLIB_HEADERS=/home/jlxip/git/jotaOS/jotaOS/projects/stdlib
