@@ -1,3 +1,10 @@
+# Support for Emacs Tramp
+if [ $TERM = "dumb" ]; then
+   unsetopt zle
+   export PS1="$ "
+   return 0
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel9k/powerlevel9k"

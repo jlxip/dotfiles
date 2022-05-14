@@ -198,11 +198,6 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
   :defer t)
 #+END_SRC
 
-** Tramp
-#+begin_src emacs-lisp
-  (require 'tramp)
-  (setq tramp-default-method "ssh")
-#+end_src
 ** yaml-mode
 #+begin_src emacs-lisp
   (use-package yaml-mode)
