@@ -7,7 +7,7 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE="nerdfont-complete"
 
 POWERLEVEL9K_DISABLE_RPROMPT=true
@@ -111,6 +111,7 @@ alias govenv='VENV=true bash -c "source venv/bin/activate && zsh"'
 alias ayo='sudo /home/jlxip/scripts/ayo.sh'
 alias kubectl='kubecolor'
 alias updatedocker='sudo docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower -R'
+alias fm='make -j9'
 
 # jotaOS
 #export JOTAOS_STDLIB_HEADERS=/home/jlxip/git/jotaOS/jotaOS/projects/stdlib

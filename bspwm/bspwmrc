@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Log this!
+exec &> >(tee -a "/tmp/bspwm.log")
+
 #
 # MONITOR CONFIGURATION
 #
@@ -15,7 +18,7 @@ fi
 sxhkd &
 setxkbmap es &
 xsetroot -cursor_name left_ptr &
-picom &
+picom --config ~/.config/picom.conf &
 nitrogen --restore &
 polybar main &
 if [ $n_monitors -eq 2 ]; then
@@ -94,3 +97,6 @@ done
 # This should also help the discord bug. I'm not sure if it does either :(
 bspc rule -a discord follow=off
 
+export BROWSER="$(which firefox)"
+xdg-mime default firefox.desktop x-scheme-handler/https
+xdg-mime default firefox.desktop x-scheme-handler/http

@@ -41,11 +41,12 @@ This is just for the ~org-contrib~ package.
 (use-package doom-themes)
 #+end_src
 *** acario-dark
-*** challenger-deep
-*** oceanic-next
+#+BEGIN_SRC emacs-lisp
+(load-theme 'doom-acario-dark t)
+#+END_SRC
 *** outrun-electric
 #+BEGIN_SRC emacs-lisp
-(load-theme 'doom-outrun-electric t)
+;(load-theme 'doom-outrun-electric t)
 #+END_SRC
 * Tabs
 Some parts here come from: https://dougie.io/emacs/indentation/
@@ -379,6 +380,7 @@ Got the idea from here: https://www.youtube.com/watch?v=Iqh50fgbIVk
              \\usepackage{listings}
              \\usepackage{color}
              \\usepackage{placeins}
+             \\usepackage{url}
 
              \\renewcommand{\\thesection}{\\arabic{section}}
 
@@ -409,9 +411,73 @@ Got the idea from here: https://www.youtube.com/watch?v=Iqh50fgbIVk
             ("\\subsection{%s}" . "\\subsection*{%s}")
             ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
 #+end_src
+*** Trabajo RI
+#+begin_src emacs-lisp
+  (with-eval-after-load 'ox-latex
+    (add-to-list 'org-latex-classes
+      '("trabajoRI"
+        "\\documentclass{IEEEtran}
+             \\usepackage[spanish]{babel}
+             \\usepackage[T1]{fontenc}
+             \\usepackage[utf8]{inputenc}
+             \\usepackage{amsmath}
+             \\usepackage{graphicx}
+             \\usepackage{url}
+             \\usepackage{placeins}
+
+             [NO-DEFAULT-PACKAGES]
+             [NO-PACKAGES]"
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}"))))
+
+#+end_src
+*** TFG
+#+begin_src emacs-lisp
+  (with-eval-after-load 'ox-latex
+    (add-to-list 'org-latex-classes
+      '("TFG"
+        "\\documentclass[a4paper,11pt,oneside]{book}
+         \\usepackage[spanish,es-tabla]{babel}
+         \\usepackage[T1]{fontenc}
+         \\usepackage[utf8]{inputenc}
+         \\usepackage{graphicx}
+         \\usepackage{url}
+         \\usepackage{placeins}
+         \\usepackage[a4paper, margin=30mm]{geometry}
+         \\usepackage{hyperref}
+         \\usepackage[acronyms,toc,nonumberlist]{glossaries}
+         \\usepackage{tocbibind}
+         \\usepackage[pdf]{graphviz}
+         \\usepackage[ruled,spanish,onelanguage]{algorithm2e}
+         \\usepackage{pgf-umlsd}
+
+         \\usepackage{titlesec}
+         \\newcommand{\\sectionbreak}{\\clearpage}
+
+         \\setcounter{secnumdepth}{3}
+
+         %\\setlength{\\parindent}{4em}
+         \\setlength{\\parskip}{1em}
+
+         \\hypersetup {
+             colorlinks=true,
+             allcolors=black,
+             urlcolor=blue,
+             pdftitle={Desarrollo de un sistema operativo con arquitectura microkernel},
+             pdfpagemode=FullScreen,
+         }
+
+         [NO-DEFAULT-PACKAGES]
+         [NO-PACKAGES]"
+            ("\\chapter{%s}" . "\\chapter{%s}")
+            ("\\section{%s}" . "\\section{%s}")
+            ("\\subsection{%s}" . "\\subsection{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection{%s}"))))
+
+#+end_src
 ** No hyperref
 #+begin_src emacs-lisp
-(setq org-latex-with-hyperref nil)
+;(setq org-latex-with-hyperref nil)
 #+end_src
 ** Extras
 *** ox-extra
@@ -426,3 +492,4 @@ Got the idea from here: https://www.youtube.com/watch?v=Iqh50fgbIVk
 (when (eq system-type 'darwin)
   (setq mac-right-option-modifier 'none))
 #+end_src
+
