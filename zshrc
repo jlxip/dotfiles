@@ -34,6 +34,9 @@ elif [ "$(hostname)" = 'Beta' ]; then
 elif [ "$HOSTNAME" = 'Gamma' ]; then
     POWERLEVEL9K_CUSTOM_HOST='echo γ'
     POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
+elif [ "$HOSTNAME" = 'omega' ]; then
+    POWERLEVEL9K_CUSTOM_HOST='echo ω'
+    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=1
 else
     # Where am I?
     POWERLEVEL9K_CUSTOM_HOST='echo "?"'

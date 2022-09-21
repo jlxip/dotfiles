@@ -106,7 +106,7 @@ entry {
 }
 
 #element.selected {
-  background-color: @background-focus;
+  background-color: @background;
   text-color: @accent;
   border-color: @accent;
   border-radius: 10px;

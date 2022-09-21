@@ -13,7 +13,6 @@
     (factory-entry "gimp-single-image-window")
     (position 0 27)
     (size 2560 1413)
-    (monitor 0)
     (open-on-exit)
     (aux-info
         (left-docks-width "44")
@@ -30,7 +29,7 @@
                 (aux-info
                     (show-button-bar "true"))))
         (book
-            (position 633)
+            (position 632)
             (current-page 0)
             (dockable "gimp-layer-list"
                 (tab-style automatic)
@@ -69,6 +68,10 @@
     (factory-entry "gimp-file-open-dialog")
     (position 858 403)
     (size 840 630))
+(session-info "toplevel"
+    (factory-entry "gimp-operation-tool-dialog")
+    (position 2030 588)
+    (monitor 0))
 
 (hide-docks no)
 (single-window-mode yes)
