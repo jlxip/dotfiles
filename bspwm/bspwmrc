@@ -8,8 +8,11 @@ exec &> >(tee -a "/tmp/bspwm.log")
 #
 n_monitors=$(xrandr -q | grep -w connected | wc -l)
 if [ $n_monitors -eq 2 ]; then
-	xrandr --output DisplayPort-1 --primary
-	xrandr --output HDMI-A-3 --left-of DisplayPort-1
+	LEFT=HDMI-A-2
+	RIGHT=HDMI-A-3
+
+	xrandr --output $RIGHT --primary
+	xrandr --output $LEFT --left-of $RIGHT
 fi
 
 #
@@ -69,8 +72,8 @@ if [ $n_monitors -eq 1 ]; then
 else
 	# Desktop
 	# If at some point fails, run xrandr here.
-	bspc monitor HDMI-A-3 -d I III V VII IX
-	bspc monitor DisplayPort-1 -d II IV VI VIII X
+	bspc monitor $LEFT -d I III V VII IX
+	bspc monitor $RIGHT -d II IV VI VIII X
 fi
 
 #

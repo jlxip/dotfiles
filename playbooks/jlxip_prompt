@@ -1,0 +1,64 @@
+#!/bin/sh -e
+
+INCLUDE="install"
+
+function jlxip_prompt_execute() {
+	touch "$HOME/.hushlogin"
+
+	# Install needed stuff
+	set +e
+	install_execute zsh
+	assert_last_ok
+
+	install_execute curl
+	assert_last_ok
+
+	install_execute git
+	assert_last_ok
+	set -e
+
+	doit() {
+		cd "$HOME"
+
+		# Grab oh-my-zsh
+		OMZSH="https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+		if [ ! -d "$HOME/.oh-my-zsh" ]; then
+			echo "exit" | sh -c "$(curl -fsSL "$OMZSH")" 2>/dev/null
+		fi
+
+		# Get powerlevel10k
+		PL10K="https://github.com/romkatv/powerlevel10k"
+		if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
+			git clone --depth=1 "$PL10K" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" 2>/dev/null
+		fi
+
+		# Clone dotfiles
+		if [ ! -d "$HOME/git/dotfiles" ]; then
+			git clone https://github.com/jlxip/dotfiles "$HOME/git/dotfiles" 2>/dev/null
+		fi
+
+		# And create a link for the zshrc
+		ln -sf "$HOME/git/dotfiles/zshrc" "$HOME/.zshrc"
+	}
+
+	# I lied, let's write it to a file
+	TEMP="$(mktemp)"
+	chmod 700 "$TEMP"
+	declare -f doit > "$TEMP"
+	echo "doit" >> "$TEMP"
+
+	sh "$TEMP"
+	if [ "$1" = "root" ]; then
+		sudo_execute sh "$TEMP"
+	fi
+
+	rm $TEMP
+
+	# Finally, change shell
+	sudo_execute chsh -s "$(which zsh)" "$(whoami)"
+	if [ "$1" = "root" ]; then
+		sudo_execute chsh -s "$(which zsh)" "root"
+	fi
+}
+
+EXECUTE="jlxip_prompt_execute"

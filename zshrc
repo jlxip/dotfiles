@@ -108,14 +108,18 @@ alias juan='john'
 alias dssh='/home/jlxip/scripts/sshdocker.sh'
 alias raurr='ping -O 192.168.0.1'
 alias gotor='TORMODE=1 torsocks --shell'
-# This is disgusting
 alias mkvenv='mkdir venv && python3 -m venv venv'
 alias govenv='VENV=true bash -c "source venv/bin/activate && zsh"'
 alias ayo='sudo /home/jlxip/scripts/ayo.sh'
 alias kubectl='kubecolor'
 alias updatedocker='sudo docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower -R'
 alias fm='make -j9'
+alias "youtube-dl"='yt-dlp'
+alias callgrind='valgrind --tool=callgrind'
+alias todo='find . -type f -exec grep -Hn TODO {} \;'
 
-# jotaOS
-#export JOTAOS_STDLIB_HEADERS=/home/jlxip/git/jotaOS/jotaOS/projects/stdlib
-#export jotaOS_stdlib_headers_path=/home/jlxip/git/jotaOS/jotaOS/projects/stdlib/pubheaders
+# Le Sysadmin
+export PATH="$HOME/git/lesysadmin:$PATH"
+
+# This has no business being here, but I never want to miss it again
+git config --global commit.gpgsign true

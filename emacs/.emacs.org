@@ -1,4 +1,6 @@
-When this is changed, remove "~/.emacs.el".
+When this is changed, remove "~/.emacs.el" (Esc Esc R).
+
+Missing all-the-icons fonts? Run ~all-the-icons-install-fonts~.
 
 #+begin_export emacs-lisp
 (setq custom-file null-device)
@@ -168,7 +170,8 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+END_SRC
 **** Use icons from All The Icons
 #+BEGIN_SRC emacs-lisp
-(setq centaur-tabs-set-icons t)
+  (setq centaur-tabs-set-icons t)
+  (setq centaur-tabs-plain-icons t)
 #+END_SRC
 
 **** Bar style
@@ -203,6 +206,10 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+begin_src emacs-lisp
   (use-package yaml-mode)
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+#+end_src
+** markdown-mode
+#+begin_src emacs-lisp
+  (use-package markdown-mode)
 #+end_src
 * Changes at bootup (*scratch* and so)
 https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
