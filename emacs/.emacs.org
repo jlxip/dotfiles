@@ -282,6 +282,12 @@ Got the idea from here: https://www.youtube.com/watch?v=Iqh50fgbIVk
     (lambda () (interactive)
           (find-file "~/.emacs.org")))
 #+end_src
+**** Run "make" with "Esc Esc M"
+#+begin_src emacs-lisp
+  (global-set-key (kbd "\e\em")
+    (lambda () (interactive)
+          (shell-command "make")))
+#+end_src
 * General settings
 ** Hide toolbar
 #+BEGIN_SRC emacs-lisp
@@ -339,6 +345,19 @@ Got the idea from here: https://www.youtube.com/watch?v=Iqh50fgbIVk
          [NO-DEFAULT-PACKAGES]
          [NO-PACKAGES]"
             ("\\chapter{%s}" . "\\chapter{%s}")
+            ("\\section{%s}" . "\\section{%s}")
+            ("\\subsection{%s}" . "\\subsection{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection{%s}"))))
+
+#+end_src
+*** clean
+#+begin_src emacs-lisp
+  (with-eval-after-load 'ox-latex
+    (add-to-list 'org-latex-classes
+      '("clean"
+        "\\documentclass[a4paper,10pt,oneside]{article}
+         [NO-DEFAULT-PACKAGES]
+         [NO-PACKAGES]"
             ("\\section{%s}" . "\\section{%s}")
             ("\\subsection{%s}" . "\\subsection{%s}")
             ("\\subsubsection{%s}" . "\\subsubsection{%s}"))))

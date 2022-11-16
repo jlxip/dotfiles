@@ -6,16 +6,9 @@ function jlxip_prompt_execute() {
 	touch "$HOME/.hushlogin"
 
 	# Install needed stuff
-	set +e
-	install_execute zsh
-	assert_last_ok
-
-	install_execute curl
-	assert_last_ok
-
-	install_execute git
-	assert_last_ok
-	set -e
+	install_execute zsh || assert_last_ok
+	install_execute curl || assert_last_ok
+	install_execute git || assert_last_ok
 
 	doit() {
 		cd "$HOME"
@@ -48,16 +41,20 @@ function jlxip_prompt_execute() {
 	echo "doit" >> "$TEMP"
 
 	sh "$TEMP"
-	if [ "$1" = "root" ]; then
-		sudo_execute sh "$TEMP"
+	if [ "$#" -gt 0 ]; then
+		if [ "$1" = "root" ]; then
+			sudo_execute sh "$TEMP"
+		fi
 	fi
 
 	rm $TEMP
 
 	# Finally, change shell
 	sudo_execute chsh -s "$(which zsh)" "$(whoami)"
-	if [ "$1" = "root" ]; then
-		sudo_execute chsh -s "$(which zsh)" "root"
+	if [ "$#" -gt 0 ]; then
+		if [ "$1" = "root" ]; then
+			sudo_execute chsh -s "$(which zsh)" "root"
+		fi
 	fi
 }
 

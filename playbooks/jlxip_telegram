@@ -1,0 +1,32 @@
+#!/bin/sh -e
+
+INCLUDE="install"
+
+function jlxip_telegram_execute() {
+	WHERE="/opt/scripts"
+	FILE="$WHERE/telegram.sh"
+	if [ -f "$FILE" ]; then
+		return $EXIT_SKIP
+	fi
+
+	if [ $# -ne 2 ]; then
+		echo "Usage: jlxip_telegram <ID> <token>"
+		return 99
+	fi
+
+	install_execute curl || assert_last_ok
+	sudo_execute mkdir -p "$WHERE"
+
+	echo "#!/bin/sh -e
+		ID=\"$1\"
+		TOKEN=\"$2\"
+		URL=\"https://api.telegram.org/bot\$TOKEN/sendMessage\"
+		curl -s -X POST \"\$URL\" -d chat_id=\"\$ID\" -d text=\"\$(hostname): \$1\"" \
+		 | sudo_execute tee "$FILE"
+
+	sudo_execute chmod a+rx,a-w "$FILE"
+
+	"$FILE" "Up and running"
+}
+
+EXECUTE="jlxip_telegram_execute"

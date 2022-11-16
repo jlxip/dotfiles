@@ -1,0 +1,54 @@
+#!/bin/sh -e
+
+INCLUDE="jlxip_telegram os distro cron"
+
+function lmkupdates_execute() {
+	WHERE="/opt/scripts"
+	FILE="$WHERE/lmkupdates.sh"
+	if [ -f "$FILE" ]; then
+		return $EXIT_SKIP
+	fi
+
+	jlxip_telegram_execute || assert_last_ok
+
+	WHERE="/opt/scripts"
+	FILE="$WHERE/lmkupdates.sh"
+
+	sudo_execute touch "$FILE"
+	sudo_execute chmod 700 "$FILE"
+
+	echo "#!/bin/sh -e" | sudo_execute tee "$FILE"
+	OS="$(os_execute)"
+	case "$OS" in
+		Linux)
+			DISTRO="$(distro_execute)"
+			case "$DISTRO" in
+				debian | ubuntu)
+					echo 'apt update' | sudo_execute tee -a "$FILE"
+					echo 'lines="$(apt list --upgradable 2>/dev/null | wc -l)"' \
+						 | sudo_execute tee -a "$FILE"
+					echo 'if [ $lines -ne 1 ]; then' | sudo_execute tee -a "$FILE"
+				;;
+				*)
+					echo "lmkupdates: unsupported distro: $DISTRO"
+					sudo_execute rm "$FILE"
+					return $EXIT_INCOMPATIBLE
+				;;
+			esac
+		;;
+		*)
+			echo "lmkupdates: unsupported OS: $OS"
+			sudo_execute rm "$FILE"
+			return $EXIT_INCOMPATIBLE
+		;;
+	esac
+
+	echo '/opt/scripts/telegram.sh "Updates available!"' \
+		 | sudo_execute tee -a "$FILE"
+	echo 'fi' | sudo_execute tee -a "$FILE"
+
+	# Check hourly
+	cron_execute add root '1 * * * * /opt/scripts/lmkupdates.sh'
+}
+
+EXECUTE="lmkupdates_execute"
