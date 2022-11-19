@@ -1,0 +1,34 @@
+#!/bin/sh -eu
+
+# This:
+#     + /etc
+#       - /etc/ssh
+# Translates to this:
+#     bup index /etc --exclude=/etc/ssh
+# Just nicer syntax
+
+WHERE="$HOME/backup.txt"
+if [ ! -f "$WHERE" ]; then
+	echo "No $WHERE"
+	exit 1
+fi
+
+add=""
+last=""
+while read p; do
+	path="$(echo "${p:1}" | xargs)"
+	if [ "${p:0:1}" = '+' ]; then
+		if [ ! -z "$last" ]; then
+			$(bup index $last)
+		fi
+
+		add="$path"
+		last="$path"
+	elif [ "${p:0:1}" = '-' ]; then
+		last+=" --exclude=$add/$path"
+	fi
+done < $WHERE
+
+if [ ! -z "$last" ]; then
+	$(bup index $last)
+fi
