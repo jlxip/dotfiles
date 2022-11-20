@@ -13,6 +13,8 @@ alert = #bd2c40
 
 [bar/main]
 monitor = HDMI-A-3
+enable-ipc = true
+
 width = 100%
 height = 27
 radius = 0
@@ -39,6 +41,8 @@ cursor-scroll = ns-resize
 
 [bar/second]
 monitor = HDMI-A-2
+enable-ipc = true
+
 width = 100%
 height = 27
 radius = 0

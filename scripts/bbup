@@ -16,6 +16,8 @@ fi
 add=""
 last=""
 while read p; do
+	if [ -z "$p" ]; then continue; fi
+
 	path="$(echo "${p:1}" | xargs)"
 	if [ "${p:0:1}" = '+' ]; then
 		if [ ! -z "$last" ]; then
