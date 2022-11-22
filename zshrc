@@ -21,27 +21,30 @@ else
     HOSTNAME="$(hostname)"
 fi
 
-if [ "$HOSTNAME" = 'Alpha' ]; then
-    POWERLEVEL9K_CUSTOM_HOST='echo α'
-    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
-elif [ "$HOSTNAME" = 'stronghold' ]; then
-    POWERLEVEL9K_CUSTOM_HOST='echo '
-    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=1
-elif [ "$(hostname)" = 'Beta' ]; then
-    # Deprecated
-    POWERLEVEL9K_CUSTOM_HOST='echo β'
-    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
-elif [ "$HOSTNAME" = 'Gamma' ]; then
-    POWERLEVEL9K_CUSTOM_HOST='echo γ'
-    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
-elif [ "$HOSTNAME" = 'omega' ]; then
-    POWERLEVEL9K_CUSTOM_HOST='echo ω'
-    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=1
-else
-    # Where am I?
-    POWERLEVEL9K_CUSTOM_HOST='echo "?"'
-    POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=1
-fi
+POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
+case "$HOSTNAME" in
+	Alpha)
+		POWERLEVEL9K_CUSTOM_HOST='echo α'
+	;;
+	Beta)
+		POWERLEVEL9K_CUSTOM_HOST='echo β'
+	;;
+	Gamma)
+		POWERLEVEL9K_CUSTOM_HOST='echo γ'
+	;;
+	omega)
+		POWERLEVEL9K_CUSTOM_HOST='echo ω'
+	;;
+	stronghold)
+		POWERLEVEL9K_CUSTOM_HOST='echo '
+	;;
+	rawtext.club)
+		POWERLEVEL9K_CUSTOM_HOST='echo 殺'
+	;;
+	*)
+		POWERLEVEL9K_CUSTOM_HOST='echo "?${HOSTNAME}?"'
+	;;
+esac
 
 if [ "$(whoami)" = 'root' ]; then
    POWERLEVEL9K_CUSTOM_ROOT='echo "#"'
@@ -117,6 +120,7 @@ alias fm='make -j9'
 alias "youtube-dl"='yt-dlp'
 alias callgrind='valgrind --tool=callgrind'
 alias todo='find . -type f -exec grep -Hn TODO {} \;'
+alias gobuild='docker run --rm -v "$PWD":/usr/src/app -w /usr/src/app golang:latest go build -v'
 
 # Le Sysadmin
 export PATH="$HOME/git/lesysadmin:$PATH"
