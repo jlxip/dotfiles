@@ -127,3 +127,11 @@ export PATH="$HOME/git/lesysadmin:$PATH"
 
 # This has no business being here, but I never want to miss it again
 git config --global commit.gpgsign true
+
+
+
+# This must be at the end of the file
+# Custom zshrc for this system?
+if [ -f "$HOME/zshrc2.sh" ]; then
+        source "$HOME/zshrc2.sh"
+fi
