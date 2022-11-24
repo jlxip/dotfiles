@@ -185,8 +185,10 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+END_SRC
 ** Emojify
 #+BEGIN_SRC emacs-lisp
-(use-package emojify)
-(add-hook 'after-init-hook #'global-emojify-mode)
+  (if (eq window-system 'X)
+    (progn
+      (use-package emojify)
+      (add-hook 'after-init-hook #'global-emojify-mode)))
 #+END_SRC
 ** Multiple cursors
 #+BEGIN_SRC emacs-lisp
