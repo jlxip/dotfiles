@@ -16,6 +16,10 @@ super + shift + x
 super + Return
 	alacritty
 
+# Emacs
+super + ctrl + Escape
+	emacs
+
 # rofi
 alt + F2
 	rofi -no-lazy-grab -show drun -theme ~/.config/rofi/style.rasi

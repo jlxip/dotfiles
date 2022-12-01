@@ -50,7 +50,7 @@ This is just for the ~org-contrib~ package.
 #+BEGIN_SRC emacs-lisp
 ;(load-theme 'doom-outrun-electric t)
 #+END_SRC
-* Tabs
+* Indentation
 Some parts here come from: https://dougie.io/emacs/indentation/
 ** Size
 #+BEGIN_SRC emacs-lisp
@@ -61,7 +61,7 @@ Some parts here come from: https://dougie.io/emacs/indentation/
 (defun disable-tabs () (setq indent-tabs-mode nil))
 (defun enable-tabs  ()
   (local-set-key (kbd "TAB") 'tab-to-tab-stop)
-  (setq indent-tabs-mode t)
+  (setq indent-tabs-mode nil)
   (setq tab-width custom-tab-width))
 #+END_SRC
 ** Language-specific modes
