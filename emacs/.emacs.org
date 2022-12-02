@@ -37,6 +37,63 @@ This is just for the ~org-contrib~ package.
 (setq use-package-always-ensure t)
 #+END_SRC
 
+* Boot
+** Dashboard
+*** Install
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook))
+#+end_src
+*** Banner
+- 'official is the regular one, the one I've been seeing all these years
+- 'logo is the prettier one
+- 1 is some nice ASCII art
+- 2 and 3 are absolutely terrible
+
+#+begin_src emacs-lisp
+(setq dashboard-startup-banner 'logo)
+#+end_src
+*** Widgets
+#+begin_src emacs-lisp
+(setq dashboard-items '())
+#+end_src
+** Remove *scratch*
+https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
+*** Empty *scratch*
+#+BEGIN_SRC emacs-lisp
+(setq initial-scratch-message "")
+#+END_SRC
+*** Kill *scratch* from the buffer
+(When a mode is set)
+#+BEGIN_SRC emacs-lisp
+(defun remove-scratch-buffer ()
+  (if (get-buffer "*scratch*")
+      (kill-buffer "*scratch*")))
+(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+#+END_SRC
+*** Kill *messages*
+#+BEGIN_SRC emacs-lisp
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+#+END_SRC
+*** Kill *Completions* after opening a file
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'minibuffer-exit-hook
+        '(lambda ()
+           (let ((buffer "*Completions*"))
+             (and (get-buffer buffer)
+                  (kill-buffer buffer)))))
+#+END_SRC
+*** Do not show *Buffer list* when opening more than one file at a time
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-buffer-menu t)
+#+END_SRC
+*** Show only one active window when opening multiple files
+#+BEGIN_SRC emacs-lisp
+(add-hook 'window-setup-hook 'delete-other-windows)
+#+END_SRC
 * Theme
 ** Doom suite
 #+begin_src emacs-lisp
@@ -100,10 +157,10 @@ Some parts here come from: https://dougie.io/emacs/indentation/
 (add-hook 'nxml-mode-hook 'enable-tabs)
 (setq nxml-child-indent custom-tab-width)
 #+END_SRC
-** electric-indent (???)
-#+BEGIN_SRC emacs-lisp
-(setq-default electric-indent-inhibit t)
-#+END_SRC
+*** Rust
+#+begin_src emacs-lisp
+(add-hook 'rust-mode-hook 'enable-tabs)
+#+end_src
 ** Make it so the backspace removes tabs
 #+BEGIN_SRC emacs-lisp
 (setq backward-delete-char-untabify-method 'hungry)
@@ -131,6 +188,20 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
   (defun asm-no-tabs ()
     (setq indent-tabs-mode nil))
   (add-hook 'asm-mode-hook 'asm-no-tabs)
+#+end_src
+** YAML
+#+begin_src emacs-lisp
+  (use-package yaml-mode)
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+#+end_src
+** Markdown
+#+begin_src emacs-lisp
+  (use-package markdown-mode)
+#+end_src
+** Rust
+#+begin_src emacs-lisp
+  (use-package rust-mode)
+  (setq rust-format-on-save t)
 #+end_src
 * Font
 #+BEGIN_SRC emacs-lisp
@@ -185,10 +256,11 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+END_SRC
 ** Emojify
 #+BEGIN_SRC emacs-lisp
-  (if (eq window-system 'X)
+  (if (eq window-system 'x)
     (progn
       (use-package emojify)
-      (add-hook 'after-init-hook #'global-emojify-mode)))
+      (add-hook 'after-init-hook #'global-emojify-mode)
+      (setq emojify-display-style 'unicode)))
 #+END_SRC
 ** Multiple cursors
 #+BEGIN_SRC emacs-lisp
@@ -202,51 +274,6 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+BEGIN_SRC emacs-lisp
 (use-package htmlize
   :defer t)
-#+END_SRC
-
-** yaml-mode
-#+begin_src emacs-lisp
-  (use-package yaml-mode)
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-#+end_src
-** markdown-mode
-#+begin_src emacs-lisp
-  (use-package markdown-mode)
-#+end_src
-* Changes at bootup (*scratch* and so)
-https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
-** Empty *scratch*
-#+BEGIN_SRC emacs-lisp
-(setq initial-scratch-message "")
-#+END_SRC
-** Kill *scratch* from the buffer
-(When a mode is set)
-#+BEGIN_SRC emacs-lisp
-(defun remove-scratch-buffer ()
-  (if (get-buffer "*scratch*")
-      (kill-buffer "*scratch*")))
-(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
-#+END_SRC
-** Kill *messages*
-#+BEGIN_SRC emacs-lisp
-(setq-default message-log-max nil)
-(kill-buffer "*Messages*")
-#+END_SRC
-** Kill *Completions* after opening a file
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'minibuffer-exit-hook
-        '(lambda ()
-           (let ((buffer "*Completions*"))
-             (and (get-buffer buffer)
-                  (kill-buffer buffer)))))
-#+END_SRC
-** Do not show *Buffer list* when opening more than one file at a time
-#+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-buffer-menu t)
-#+END_SRC
-** Show only one active window when opening multiple files
-#+BEGIN_SRC emacs-lisp
-(add-hook 'window-setup-hook 'delete-other-windows)
 #+END_SRC
 
 * Usage

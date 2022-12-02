@@ -17,7 +17,7 @@ super + Return
 	alacritty
 
 # Emacs
-super + ctrl + Escape
+super + ctrl + Return
 	emacs
 
 # rofi
