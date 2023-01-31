@@ -59,6 +59,10 @@ This is just for the ~org-contrib~ package.
 #+begin_src emacs-lisp
 (setq dashboard-items '())
 #+end_src
+*** Disable random footnote
+#+begin_src emacs-lisp
+(setq dashboard-set-footer nil)
+#+end_src
 ** Remove *scratch*
 https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-opening
 *** Empty *scratch*

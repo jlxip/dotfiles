@@ -1,0 +1,69 @@
+#!/bin/sh -eu
+
+if [ $# -lt 1 ]; then
+    echo "Missing args"
+    exit 1
+fi
+
+if [ "$1" = "sleep" ]; then
+    # Sleeper backend
+    now="$(date +%s)"
+    wait="$(echo $2 - $now | bc)"
+    if [ $wait -gt 0 ]; then
+        sleep $wait
+    fi
+
+    # Notify
+    notify-send "Bedtime. Shutting down in 5 minutes."
+    mplayer ~/git/dotfiles/ding.mp3 &> /dev/null || :
+    sleep 300
+
+    # Good night
+    systemctl poweroff
+    exit
+fi
+
+# Already running here? Kill it
+running="$(ps -aux)"
+if (echo "$running" | grep -w -q "bedtime sleep"); then
+    running="$(echo "$running" | grep "bedtime sleep")"
+    # This has no quotes by desing
+    running="$(echo $running | cut -d' ' -f2)"
+    kill -9 "$running"
+    echo 'killed'
+fi
+
+if [ "$1" = "stop" ]; then
+    # This is a catch in case wanting to execute just the above
+    exit
+fi
+
+
+
+# Frontend
+now="$(date +%s)"
+at="$(date -d $1 +%s)"
+if [ $at -lt $now ]; then
+    # Oops, grab tomorrow's
+    at="$(date -d "$1 tomorrow" +%s)"
+fi
+
+# How many hours of sleep?
+sleep=8
+if (echo $@ | grep -w -q short); then
+    sleep=7
+fi
+
+sleep="$(echo $sleep*60*60 | bc)"
+at="$(echo $at - $sleep | bc)"
+
+# Night routine done?
+if (echo $@ | grep -w -q skip); then :; else
+    at="$(echo $at - 1*60*60 | bc)"
+fi
+
+# That's it, let me know 5 minutes earlier
+at="$(echo $at - 5*60 | bc)"
+$0 sleep $at &
+disown
+echo 'ok'

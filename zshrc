@@ -121,6 +121,7 @@ alias "youtube-dl"='yt-dlp'
 alias callgrind='valgrind --tool=callgrind'
 alias todo='find . -type f -exec grep -Hn TODO {} \;'
 alias gobuild='docker run --rm -v "$PWD":/usr/src/app -w /usr/src/app golang:latest go build -v'
+alias cr='cargo run'
 
 # Le Sysadmin
 export PATH="$HOME/git/lesysadmin:$PATH"
