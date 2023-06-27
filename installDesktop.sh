@@ -94,6 +94,7 @@ installpkg incron					# Notice when a file changes
 installpkg wmname					# For fixing Java applications (launched by bspwm config)
 installpkg syncthing				# Synchronize devices
 #installpkg plymouth-theme-green-blocks-git AUR
+#clipit
 
 #
 # SHORT SCRIPTS

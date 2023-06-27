@@ -21,9 +21,11 @@ super + ctrl + Return
 	emacs
 
 # rofi
-alt + F2
-	rofi -no-lazy-grab -show drun -theme ~/.config/rofi/style.rasi
+#alt + F2
+#	rofi -no-lazy-grab -show drun -theme ~/.config/rofi/style.rasi
 alt + F3
+#	rofi -no-lazy-grab -show drun -theme ~/.config/rofi/style.rasi
+alt + space
 	rofi -no-lazy-grab -show drun -theme ~/.config/rofi/style.rasi
 
 
@@ -43,6 +45,10 @@ super + e
 ctrl + super + w
 	$HOME/scripts/firefox.sh
 
+# Leafpad
+super + l
+	leafpad
+
 
 # Lock screen
 ctrl + alt + l
@@ -51,14 +57,6 @@ ctrl + alt + l
 # Useless stuff
 Pause
 	mplayer /opt/bruh.mp3
-super + Pause
-	mplayer -fs /opt/what.mp4
-super + shift + Pause
-	mplayer /opt/tada.mp3
-shift + Pause
-	mplayer /opt/vine_boom.mp3
-alt + Pause
-	mplayer /opt/wow.mp3
 
 
 
@@ -164,21 +162,23 @@ XF86AudioLowerVolume
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 XF86AudioPlay
-	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+	playerctl -p Sonixd play-pause
 XF86AudioPrev
-	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+	playerctl -p Sonixd previous
 XF86AudioNext
-	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+	playerctl -p Sonixd next
+
+
 # Multimedia pro, for 105-key ISO keyboards
 super + Insert
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 super + Prior
-	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+	playerctl -p Sonixd play-pause
 super + Home
 	pactl set-sink-volume @DEFAULT_SINK@ +5%
 super + End
 	pactl set-sink-volume @DEFAULT_SINK@ -5%
 super + Delete
-	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+	playerctl -p Sonixd previous
 super + Next
-	dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+	playerctl -p Sonixd next

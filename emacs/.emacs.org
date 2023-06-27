@@ -207,6 +207,14 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
   (use-package rust-mode)
   (setq rust-format-on-save t)
 #+end_src
+** PEST
+#+begin_src emacs-lisp
+  ;(use-package pest-mode
+  ;  :quelpa (pest-mode :fetcher github :repo "ksqsf/pest-mode")
+  ;  :mode "\\.pest\\'"
+  ;  :hook (pest-mode . flymake-mode))
+  (use-package pest-mode)
+#+end_src
 * Font
 #+BEGIN_SRC emacs-lisp
   (set-face-attribute 'default nil :font "Hack Nerd Font" :height 160)

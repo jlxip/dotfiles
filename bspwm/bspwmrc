@@ -38,6 +38,7 @@ wmname compiz & # Fix Java applications
 /usr/lib/notification-daemon-1.0/notification-daemon &	# (Gnome) notification daemon
 megasync &
 kdeconnect-indicator &
+clipit -d &
 
 which syncthing &> /dev/null
 if [ $? -eq 0 ]; then

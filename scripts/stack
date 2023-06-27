@@ -1,0 +1,13 @@
+#!/bin/bash -eu
+
+MANUAL="$(pacman -Qe | cut -d' ' -f1 | xargs)"
+INSTALLED="$(cat /var/log/pacman.log | grep installed)"
+
+LINE=""
+for i in $MANUAL; do
+	if [ ! -z $i ]; then
+		LINE="$LINE\n$(echo "$INSTALLED" | grep $i)"
+	fi
+done
+
+echo -e $LINE | sort
