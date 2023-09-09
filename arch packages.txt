@@ -2,11 +2,11 @@ adobe-source-han-sans-jp-fonts
 adobe-source-han-serif-jp-fonts
 alacritty
 blueberry
-bspwm
+bspwm-git
 cbonsai
 clipit
 gnome-clocks
-lxappearance
+lxappearance-gtk3
 nitrogen
 numlockx
 papirus-icon-theme

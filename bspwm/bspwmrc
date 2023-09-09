@@ -8,8 +8,8 @@ exec &> >(tee -a "/tmp/bspwm.log")
 #
 n_monitors=$(xrandr -q | grep -w connected | wc -l)
 if [ $n_monitors -eq 2 ]; then
-	LEFT=HDMI-A-2
-	RIGHT=HDMI-A-3
+	LEFT=HDMI-A-3
+	RIGHT=HDMI-A-2
 
 	xrandr --output $RIGHT --primary
 	xrandr --output $LEFT --left-of $RIGHT

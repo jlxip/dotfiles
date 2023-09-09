@@ -1,0 +1,12 @@
+#!/bin/sh -eu
+
+INCLUDE="sudo dotfiles install cron"
+
+backups_execute() {
+	dotfiles_execute || assert_last_ok
+	# ln -sf scripts
+	# wrapper.sh, getdbs.sh, backup.sh
+	# Set cron
+}
+
+EXECUTE="backups_execute"
