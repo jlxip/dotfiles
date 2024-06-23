@@ -53,7 +53,7 @@ This is just for the ~org-contrib~ package.
 - 2 and 3 are absolutely terrible
 
 #+begin_src emacs-lisp
-(setq dashboard-startup-banner 'logo)
+(setq dashboard-startup-banner 1)
 #+end_src
 *** Widgets
 #+begin_src emacs-lisp
@@ -105,12 +105,17 @@ https://unix.stackexchange.com/questions/19874/prevent-unwanted-buffers-from-ope
 #+end_src
 *** acario-dark
 #+BEGIN_SRC emacs-lisp
-(load-theme 'doom-acario-dark t)
+  ;(load-theme 'doom-acario-dark t)
 #+END_SRC
 *** outrun-electric
 #+BEGIN_SRC emacs-lisp
-;(load-theme 'doom-outrun-electric t)
+  ;(load-theme 'doom-outrun-electric t)
 #+END_SRC
+** VIVALAVIDA
+#+begin_src emacs-lisp
+  (load-theme 'VIVALAVIDA t)
+#+end_src
+
 * Indentation
 Some parts here come from: https://dougie.io/emacs/indentation/
 ** Size
@@ -165,6 +170,11 @@ Some parts here come from: https://dougie.io/emacs/indentation/
 #+begin_src emacs-lisp
 (add-hook 'rust-mode-hook 'enable-tabs)
 #+end_src
+*** Plain text
+#+begin_src emacs-lisp
+  (add-hook 'text-mode-hook
+      (setq indent-tabs-mode nil))
+#+end_src
 ** Make it so the backspace removes tabs
 #+BEGIN_SRC emacs-lisp
 (setq backward-delete-char-untabify-method 'hungry)
@@ -217,12 +227,16 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+end_src
 * Font
 #+BEGIN_SRC emacs-lisp
-  (set-face-attribute 'default nil :font "Hack Nerd Font" :height 160)
+  (if (eq system-type 'darwin)
+    (set-face-attribute 'default nil :font "SFMono Nerd Font" :height 250)
+    (set-face-attribute 'default nil :font "Hack Nerd Font" :height 160)
+  )
 #+END_SRC
 * Packages
 ** All The Icons
 #+BEGIN_SRC emacs-lisp
-(use-package all-the-icons)
+  (use-package all-the-icons
+    :if (display-graphic-p))
 #+END_SRC
 ** Treemacs (File browser)
 #+BEGIN_SRC emacs-lisp
@@ -281,11 +295,22 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
   :bind (("C-c m c" . mc/edit-lines)
          ("C-<mouse-1>" . mc/add-cursor-on-click)))
 #+END_SRC
-
+** clang-format+
+#+begin_src emacs-lisp
+  (use-package clang-format+)
+  (add-hook 'c-mode-common-hook #'clang-format+-mode)
+#+end_src
+** python-black
+#+begin_src emacs-lisp
+  (use-package python-black
+    :demand t
+    :after python
+    :hook (python-mode . python-black-on-save-mode))
+#+end_src
 ** Others that do not require config
 #+BEGIN_SRC emacs-lisp
-(use-package htmlize
-  :defer t)
+  (use-package htmlize
+    :defer t)
 #+END_SRC
 
 * Usage

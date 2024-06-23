@@ -1,10 +1,3 @@
-# Support for Emacs Tramp
-if [ $TERM = "dumb" ]; then
-   unsetopt zle
-   export PS1="$ "
-   return 0
-fi
-
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -40,6 +33,9 @@ case "$HOSTNAME" in
 	;;
 	rawtext.club)
 		POWERLEVEL9K_CUSTOM_HOST='echo 殺'
+	;;
+	iMac-de-Jose.local)
+		POWERLEVEL9K_CUSTOM_HOST='echo λ'
 	;;
 	*)
 		POWERLEVEL9K_CUSTOM_HOST='echo "?${HOSTNAME}?"'
@@ -114,7 +110,6 @@ alias gotor='TORMODE=1 torsocks --shell'
 alias mkvenv='mkdir .venv && python3 -m venv .venv'
 alias govenv='VENV=true bash -c "source .venv/bin/activate && zsh"'
 alias ayo='sudo /home/jlxip/scripts/ayo.sh'
-alias kubectl='kubecolor'
 alias updatedocker='sudo docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower -R'
 alias fm='make -j9'
 alias "youtube-dl"='yt-dlp'
@@ -139,3 +134,22 @@ git config --global commit.gpgsign true
 if [ -f "$HOME/zshrc2.sh" ]; then
         source "$HOME/zshrc2.sh"
 fi
+
+export HOMEBREW_NO_ENV_HINTS=1
+
+function fawk {
+	find . | gawk "$1"
+}
+function fawksh {
+	find . | gawk "$1" | bash -c
+}
+
+if [ "$(uname -s)" = "Darwin" ]; then
+	alias nproc="sysctl -n hw.physicalcpu"
+fi
+
+
+
+# We're so back
+alias upd="pacman -Syu"
+
