@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# --- LOG ---
+exec &> >(tee -a "/tmp/bspwm.log")
+
+# --- AUTOSTART ---
+sxhkd &
+setxkbmap es
+xsetroot -cursor_name left_ptr
+picom --config ~/.config/picom.conf &
+nitrogen --restore
+numlockx
+
+~/.config/bar.sh &
+~/.config/tray.sh &
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+telegram-desktop -startintray &
+wmname compiz # Fix Java applications
+#/usr/lib/notification-daemon-1.0/notification-daemon &
+megasync &
+XDG_CACHE_HOME=~/.cache clipsim --daemon &
+
+#xset -dpms s off # Don't turn off screen
+
+# --- CONFIG ---
+bspc config pointer_modifier mod1
+bspc config pointer_motion_interval 7 # 144Hz mouse
+DESKTOPS="I II III IV V VI VII VIII IX X"
+bspc monitor -d $DESKTOPS
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+for i in $DESKTOPS; do bspc desktop $i -l monocle; done
+
+bspc rule -a "*:*:*" state=floating # All floating
+
+# --- PROGRAM-SPECIFIC CONFIG ---
+export BROWSER="$(which firefox)"
+#xdg-mime default firefox.desktop x-scheme-handler/http
+#xdg-mime default firefox.desktop x-scheme-handler/https
+
+echo 'Reached the end!'

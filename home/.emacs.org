@@ -229,7 +229,7 @@ https://stackoverflow.com/questions/24344611/emacs-weirdness-when-trying-to-comm
 #+BEGIN_SRC emacs-lisp
   (if (eq system-type 'darwin)
     (set-face-attribute 'default nil :font "SFMono Nerd Font" :height 250)
-    (set-face-attribute 'default nil :font "Hack Nerd Font" :height 160)
+    (set-face-attribute 'default nil :font "BigBlueTermPlus Nerd Font" :height 160)
   )
 #+END_SRC
 * Packages

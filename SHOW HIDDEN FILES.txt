@@ -1,0 +1,1 @@
+Always show hidden files when viewing this repository

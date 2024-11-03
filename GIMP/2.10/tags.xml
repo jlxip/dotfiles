@@ -208,13 +208,13 @@
   <resource identifier="${gimp_data_dir}/dynamics/Basic/Negative-Size-Pressure.gdyn" checksum="(null)">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/dynamics/Basic/Pen-Generic.gdyn" checksum="(null)">
-  </resource>
-
   <resource identifier="${gimp_data_dir}/dynamics/Basic/Pencil-Generic.gdyn" checksum="(null)">
   </resource>
 
   <resource identifier="${gimp_data_dir}/dynamics/Basic/Pencil-Shader.gdyn" checksum="(null)">
+  </resource>
+
+  <resource identifier="${gimp_data_dir}/dynamics/Basic/Pen-Generic.gdyn" checksum="(null)">
   </resource>
 
   <resource identifier="${gimp_data_dir}/dynamics/FX/Perspective.gdyn" checksum="(null)">
@@ -247,10 +247,10 @@
   <resource identifier="${mypaint_brushes_dir}/experimental/1pixel.myb" checksum="edc5df19469776f35d08d24f9248c406">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/ramon/2B_pencil.myb" checksum="7136280b33d2f2cb27c2cfcc96c57ce4">
+  <resource identifier="${mypaint_brushes_dir}/deevad/2B_pencil.myb" checksum="abaa73df608d192d62bd3a33636cf1ba">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/deevad/2B_pencil.myb" checksum="abaa73df608d192d62bd3a33636cf1ba">
+  <resource identifier="${mypaint_brushes_dir}/ramon/2B_pencil.myb" checksum="7136280b33d2f2cb27c2cfcc96c57ce4">
   </resource>
 
   <resource identifier="${mypaint_brushes_dir}/deevad/4H_pencil.myb" checksum="2718434e495370fb4d96d217a3c524c2">
@@ -298,9 +298,6 @@
   <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/airsmudgeultimate_sk.myb" checksum="0d171b9a901deff13618681583ca6516">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/ramon/B-pencil.myb" checksum="2988d540b16ef2e32d500e6b7af6d3cd">
-  </resource>
-
   <resource identifier="${mypaint_brushes_dir}/deevad/ballpen.myb" checksum="0df9565cf6dad98cb80e809346d0bda7">
   </resource>
 
@@ -340,6 +337,9 @@
   <resource identifier="${mypaint_brushes_dir}/ramon/Blur_Fast.myb" checksum="3e14060e7440e0f8447f3fbb5c6710d6">
   </resource>
 
+  <resource identifier="${mypaint_brushes_dir}/ramon/B-pencil.myb" checksum="2988d540b16ef2e32d500e6b7af6d3cd">
+  </resource>
+
   <resource identifier="${mypaint_brushes_dir}/classic/brush.myb" checksum="edcc0d95df5c1e1388bd9a0216d46acb">
   </resource>
 
@@ -376,10 +376,10 @@
   <resource identifier="${mypaint_brushes_dir}/ramon/Classic_Paint.myb" checksum="652661a003f0969a8d63c5276c21af3b">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/classic_sk.myb" checksum="9bd31cfe236ff595d72278dc9245c47e">
+  <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/classicroundblock_static_c.myb" checksum="8a302c6160d1d033b13a4f4cd78f0646">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/classicroundblock_static_c.myb" checksum="8a302c6160d1d033b13a4f4cd78f0646">
+  <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/classic_sk.myb" checksum="9bd31cfe236ff595d72278dc9245c47e">
   </resource>
 
   <resource identifier="${mypaint_brushes_dir}/ramon/Clouds.myb" checksum="7fa3079c18b44060670420deec6861b2">
@@ -472,10 +472,10 @@
   <resource identifier="${mypaint_brushes_dir}/classic/ink_eraser.myb" checksum="2a9f9d4fc333a98c66b24bd3bf61bbf4">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/ink_slow_s.myb" checksum="142431dd853cbaea246b5ef55d861218">
+  <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/ink-slowline_s.myb" checksum="bdb4cc8434a37f470b8caad86e678c9e">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/ink-slowline_s.myb" checksum="bdb4cc8434a37f470b8caad86e678c9e">
+  <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/ink_slow_s.myb" checksum="142431dd853cbaea246b5ef55d861218">
   </resource>
 
   <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/inkster_l.myb" checksum="34184247174bf95343a4fe85240789f1">
@@ -559,9 +559,6 @@
   <resource identifier="${mypaint_brushes_dir}/deevad/only_water_fringe.myb" checksum="96d556d137c3bfec7dbc3ce0745c0e01">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/ramon/P._Shade.myb" checksum="a6b44ee613ffdd5b6d4ce6050838bbc5">
-  </resource>
-
   <resource identifier="${mypaint_brushes_dir}/kaerhon_v1/paint_barrr_sm.myb" checksum="267761c0eb7ddd9ef19c139ba2367c87">
   </resource>
 
@@ -589,9 +586,6 @@
   <resource identifier="${mypaint_brushes_dir}/deevad/pen.myb" checksum="f153b2d8987efdb2be18b8813a47bf54">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/deevad/pen-note.myb" checksum="53c28c28967a1b373f58010d4e2883f2">
-  </resource>
-
   <resource identifier="${mypaint_brushes_dir}/ramon/PenBrush.myb" checksum="a2cb08ec273ec224df7217655de5fb19">
   </resource>
 
@@ -604,16 +598,22 @@
   <resource identifier="${mypaint_brushes_dir}/tanda/pencil-8b.myb" checksum="45b873e55578e2287a2ab2ad73fbc461">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/experimental/pick_and_drag.myb" checksum="c2f441d54d7a8f2097c96087717e22ac">
+  <resource identifier="${mypaint_brushes_dir}/deevad/pen-note.myb" checksum="53c28c28967a1b373f58010d4e2883f2">
   </resource>
 
-  <resource identifier="${mypaint_brushes_dir}/experimental/pixel_hardink.myb" checksum="cc53998efab5d3cd5064e46bda62800c">
+  <resource identifier="${mypaint_brushes_dir}/experimental/pick_and_drag.myb" checksum="c2f441d54d7a8f2097c96087717e22ac">
   </resource>
 
   <resource identifier="${mypaint_brushes_dir}/experimental/pixelblocking.myb" checksum="be6506b5fbef99d305c8b973cb7b14c3">
   </resource>
 
+  <resource identifier="${mypaint_brushes_dir}/experimental/pixel_hardink.myb" checksum="cc53998efab5d3cd5064e46bda62800c">
+  </resource>
+
   <resource identifier="${mypaint_brushes_dir}/classic/pointy_ink.myb" checksum="ab81789cd3584926f103b7a4ed452d65">
+  </resource>
+
+  <resource identifier="${mypaint_brushes_dir}/ramon/P._Shade.myb" checksum="a6b44ee613ffdd5b6d4ce6050838bbc5">
   </resource>
 
   <resource identifier="${mypaint_brushes_dir}/classic/puantilism.myb" checksum="d05c2b445f6c4e69886143ceb07adba0">
@@ -955,16 +955,19 @@
   <resource identifier="gimp-gradient-fg-bg-rgb-hardedge" checksum="f3a21fae99695a8feac84cee0ddd716a">
   </resource>
 
-  <resource identifier="gimp-gradient-fg-bg-hsv-ccw" checksum="65aacbbd72d99ff20ca1bd310f0a21a5">
+  <resource identifier="gimp-gradient-fg-bg-hsv-cw" checksum="86589f70c8a7777c6e2d1d14b99e3759">
   </resource>
 
-  <resource identifier="gimp-gradient-fg-bg-hsv-cw" checksum="86589f70c8a7777c6e2d1d14b99e3759">
+  <resource identifier="gimp-gradient-fg-bg-hsv-ccw" checksum="65aacbbd72d99ff20ca1bd310f0a21a5">
   </resource>
 
   <resource identifier="gimp-gradient-fg-bg-rgb" checksum="4a878c6cfae0b0e03c0834723daadf92">
   </resource>
 
   <resource identifier="gimp-gradient-fg-transparent" checksum="1491f74caf057a39c8193470da2d2a29">
+  </resource>
+
+  <resource identifier="gimp-gradient-fg-transparent-hardedge" checksum="34dca90c80cbb5d91a2d07a0e2cfba84">
   </resource>
 
   <resource identifier="${gimp_data_dir}/gradients/Abstract_1.ggr" checksum="edaa7d1fc882ab813b75b49ee9272913">
@@ -1177,79 +1180,79 @@
   <resource identifier="${gimp_data_dir}/gradients/Yellow_Orange.ggr" checksum="428584726006e23e260baa2a7d79f295">
   </resource>
 
-  <resource identifier="gimp-palette-color-history" checksum="1f9f38a43f01a3869c2e162b802d0182">
+  <resource identifier="gimp-palette-color-history" checksum="(null)">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Bears.gpl" checksum="852ce0c907c5fbee91183eb2eafab4de">
+  <resource identifier="${gimp_data_dir}/palettes/Bears.gpl" checksum="e82e818c20ac12bdd21049924ea2d1e7">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Bgold.gpl" checksum="407f0ba4e2da189b5cf23fe863c60a95">
+  <resource identifier="${gimp_data_dir}/palettes/Bgold.gpl" checksum="346622db0138429b0fab8b5d79d8a95c">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Blues.gpl" checksum="30894ca07a06a6913f7564abda414bbc">
+  <resource identifier="${gimp_data_dir}/palettes/Blues.gpl" checksum="16906e712e0573b8562ed5220298502b">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Borders.gpl" checksum="bc3b900c65eef409fa84c606336d8804">
+  <resource identifier="${gimp_data_dir}/palettes/Borders.gpl" checksum="3bc2921d2c89edc115ab7f42896c0c01">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Browns_And_Yellows.gpl" checksum="d642210b147ec6b2b3f7d4d00bce6448">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Caramel.gpl" checksum="c371d6d29ccd5f9b2f04b403472b23e1">
+  <resource identifier="${gimp_data_dir}/palettes/Caramel.gpl" checksum="1edf264a8bc4a91b1bef64a5ad4c854d">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Cascade.gpl" checksum="7719472716f80c60fca1e8a2341af6a0">
+  <resource identifier="${gimp_data_dir}/palettes/Cascade.gpl" checksum="54c05cc23d1e73d73adb4fa9846c80b2">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/China.gpl" checksum="b5e38f476e0d97881b13d20fc18fbc07">
+  <resource identifier="${gimp_data_dir}/palettes/China.gpl" checksum="05c14acb0d2ba92d317ea3d7e94d63f1">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Coldfire.gpl" checksum="715d4f77942eafd9ecb867a8f45147bf">
+  <resource identifier="${gimp_data_dir}/palettes/Coldfire.gpl" checksum="1ed0c4895cf5473479ae25e798008094">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Cool_Colors.gpl" checksum="66761475d72c3b31ddd958455a6966ad">
+  <resource identifier="${gimp_data_dir}/palettes/Cool_Colors.gpl" checksum="8fc00f172559e702a5ab9680013b0554">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Cranes.gpl" checksum="6a7476437d9c9eb21fa7fd0acfc23093">
+  <resource identifier="${gimp_data_dir}/palettes/Cranes.gpl" checksum="cb2e9acc0ed26521d3aed8948aa0d4e8">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Dark_pastels.gpl" checksum="aae2f235067893ede99be00c0acde0af">
+  <resource identifier="${gimp_data_dir}/palettes/Dark_pastels.gpl" checksum="8fa7a69d183b2f1b41397d27dfa10a89">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Default.gpl" checksum="b8d8754cf636809b474b501e4c540788">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Ega.gpl" checksum="03df9da54486742d75991b8778724980">
+  <resource identifier="${gimp_data_dir}/palettes/Ega.gpl" checksum="a8842755eb6e9534d89bc4dfa360ea91">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Firecode.gpl" checksum="9681273f681c4c5fadcb8fd72975dc6f">
+  <resource identifier="${gimp_data_dir}/palettes/Firecode.gpl" checksum="31da06a142dbb7e290ecae399da8c198">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Gold.gpl" checksum="515a97ee0c5f5e8a86f6566063d16b78">
+  <resource identifier="${gimp_data_dir}/palettes/Gold.gpl" checksum="69156b66cb39a691e8ee92824facfc74">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Grayblue.gpl" checksum="342f9b780526189652c85dd905b88e6f">
+  <resource identifier="${gimp_data_dir}/palettes/Grayblue.gpl" checksum="50e95752c59ed66f2871533b48ad80f7">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Grays.gpl" checksum="fcf5e6f9da0fbc46bac07d34741fd648">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/GrayViolet.gpl" checksum="a62dd8e19e99410152439a1221e9ca73">
+  <resource identifier="${gimp_data_dir}/palettes/GrayViolet.gpl" checksum="3a200b1b9ca7f3b7bcebc70fe4a4832e">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Greens.gpl" checksum="d1d4dd31dd5352581cd881b664b9df6f">
+  <resource identifier="${gimp_data_dir}/palettes/Greens.gpl" checksum="c74e6275e9e921dcc64870a670697fa0">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Hilite.gpl" checksum="43f144cfbb86d6080fa6e63df7b55ce4">
+  <resource identifier="${gimp_data_dir}/palettes/Hilite.gpl" checksum="9cecfa2be285ac84b832335b8d32d915">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Khaki.gpl" checksum="b6d117cbef311f9568555d4f12c36750">
+  <resource identifier="${gimp_data_dir}/palettes/Khaki.gpl" checksum="cbcc5d547c2000f8639efa68d4f6f18e">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Lights.gpl" checksum="3483aee51ec01db06b41463903da53f9">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Linux.gpl" checksum="9732897ef39873c91d1d80ea1ac2dd8a">
+  <resource identifier="${gimp_data_dir}/palettes/Linux.gpl" checksum="0e7549f6e63ef2b1de3f537cc7da022b">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Muted.gpl" checksum="24bc023216795f2eb722546696d3082d">
@@ -1258,34 +1261,34 @@
   <resource identifier="${gimp_data_dir}/palettes/Named_Colors.gpl" checksum="9ab88f7333eb4d71a2adb8af16053d68">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/News3.gpl" checksum="48d7f7a79277c35b8f0af8412592aa24">
+  <resource identifier="${gimp_data_dir}/palettes/News3.gpl" checksum="d45d654d154d6b7c3ce7e3b7635e863d">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Op2.gpl" checksum="c8cd3df8ea2d48ecedb7d72f1d9279d7">
+  <resource identifier="${gimp_data_dir}/palettes/Op2.gpl" checksum="082035d380a34e045f0548df4d44f82f">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Paintjet.gpl" checksum="55756c69e95ab9ae6f24be119b2ee696">
+  <resource identifier="${gimp_data_dir}/palettes/Paintjet.gpl" checksum="2c4f4c6e46d18ebd62e38912b1df6b68">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Pastels.gpl" checksum="ac86ae539e481caff425f8ad6c580707">
+  <resource identifier="${gimp_data_dir}/palettes/Pastels.gpl" checksum="c17b8c554459325319934d120fc3daec">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Plasma.gpl" checksum="ae881c1e4dd4c2d0fd68279b6a5b5584">
+  <resource identifier="${gimp_data_dir}/palettes/Plasma.gpl" checksum="086d1d645e1fec277ae99bb351dc59de">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Reds.gpl" checksum="6b796b5d75b7a163ce661ae68f531efe">
+  <resource identifier="${gimp_data_dir}/palettes/Reds.gpl" checksum="cd1ed47383e48553e0702a7a554fa3fd">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Reds_And_Purples.gpl" checksum="c0bc2a7991d9c65ea9d19f9c5c47e8b1">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Royal.gpl" checksum="d0cae6ec15096be4fc756425eb68d376">
+  <resource identifier="${gimp_data_dir}/palettes/Royal.gpl" checksum="c2afa124f653f4253d94e225c926c94a">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Tango.gpl" checksum="0c31eccdd183d0ae24778f1b1e527018">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Topographic.gpl" checksum="5d68b1c684b1a65e1f9995ffe31bd75d">
+  <resource identifier="${gimp_data_dir}/palettes/Topographic.gpl" checksum="7281433871d8c0904cfe2975424fbdc9">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Visibone.gpl" checksum="83236d5917dddacdc89d228e503db053">
@@ -1294,13 +1297,31 @@
   <resource identifier="${gimp_data_dir}/palettes/Visibone_2.gpl" checksum="a6ecc8ab9898c86dc03eb58ab6dcb3b9">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Volcano.gpl" checksum="ab8f58878b77c28e3885b3c7e9bb6fc8">
+  <resource identifier="${gimp_data_dir}/palettes/Volcano.gpl" checksum="1d1fd8e110046e9f33e7be9ef7fe8d7b">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Warm_Colors.gpl" checksum="9d3343c57a7f8d36c3c061a1c8314afc">
+  <resource identifier="${gimp_data_dir}/palettes/Warm_Colors.gpl" checksum="de9eb66b02c0eaa5d6ee4ee30638e91d">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/palettes/Web.gpl" checksum="51091776e5a24c2f40ce5a8b7b7f52ee">
+  <resource identifier="${gimp_data_dir}/palettes/Web.gpl" checksum="f02e8dfa23d01d6acfbab7f895c2dd16">
+  </resource>
+
+  <resource identifier="BigBlueTerm437 Nerd Font" checksum="(null)">
+  </resource>
+
+  <resource identifier="BigBlueTerm437 Nerd Font Mono" checksum="(null)">
+  </resource>
+
+  <resource identifier="BigBlueTerm437 Nerd Font Propo" checksum="(null)">
+  </resource>
+
+  <resource identifier="BigBlueTermPlus Nerd Font" checksum="(null)">
+  </resource>
+
+  <resource identifier="BigBlueTermPlus Nerd Font Mono" checksum="(null)">
+  </resource>
+
+  <resource identifier="BigBlueTermPlus Nerd Font Propo" checksum="(null)">
   </resource>
 
   <resource identifier="C059" checksum="(null)">
@@ -1331,9 +1352,6 @@
   </resource>
 
   <resource identifier="Cantarell Ultra-Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="CMU Serif Medium" checksum="(null)">
   </resource>
 
   <resource identifier="D050000L" checksum="(null)">
@@ -1405,48 +1423,6 @@
   <resource identifier="DejaVu Serif Semi-Condensed" checksum="(null)">
   </resource>
 
-  <resource identifier="FreeMono" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeMono Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeMono Bold Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeMono Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeSans" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeSans Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeSans Semi-Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeSans Semi-Bold Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeSerif" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeSerif Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeSerif Bold Italic" checksum="(null)">
-  </resource>
-
-  <resource identifier="FreeSerif Italic" checksum="(null)">
-  </resource>
-
-  <resource identifier="Hack Nerd Font" checksum="(null)">
-  </resource>
-
-  <resource identifier="JoyPixels" checksum="(null)">
-  </resource>
-
   <resource identifier="Liberation Mono" checksum="(null)">
   </resource>
 
@@ -1493,6 +1469,9 @@
   </resource>
 
   <resource identifier="Monospace Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="mtx" checksum="(null)">
   </resource>
 
   <resource identifier="Nimbus Mono PS" checksum="(null)">
@@ -1621,100 +1600,55 @@
   <resource identifier="Source Code Pro Ultra-Light Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable" checksum="(null)">
+  <resource identifier="SourceCodeVF" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable" checksum="(null)">
+  <resource identifier="SourceCodeVF" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Bold" checksum="(null)">
+  <resource identifier="SourceCodeVF Bold" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Bold Italic" checksum="(null)">
+  <resource identifier="SourceCodeVF Bold Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Heavy" checksum="(null)">
+  <resource identifier="SourceCodeVF Heavy" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Heavy Italic" checksum="(null)">
+  <resource identifier="SourceCodeVF Heavy Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Italic" checksum="(null)">
+  <resource identifier="SourceCodeVF Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Italic" checksum="(null)">
+  <resource identifier="SourceCodeVF Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Light" checksum="(null)">
+  <resource identifier="SourceCodeVF Light" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Light Italic" checksum="(null)">
+  <resource identifier="SourceCodeVF Light Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Medium" checksum="(null)">
+  <resource identifier="SourceCodeVF Medium" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Medium Italic" checksum="(null)">
+  <resource identifier="SourceCodeVF Medium Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Semi-Bold" checksum="(null)">
+  <resource identifier="SourceCodeVF Semi-Bold" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Semi-Bold Italic" checksum="(null)">
+  <resource identifier="SourceCodeVF Semi-Bold Italic" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Ultra-Light" checksum="(null)">
+  <resource identifier="SourceCodeVF Ultra-Light" checksum="(null)">
   </resource>
 
-  <resource identifier="Source Code Variable Ultra-Light Italic" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Sans JP" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Sans JP Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Sans JP Heavy" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Sans JP Light" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Sans JP Semi-Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Sans JP Semi-Light" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Sans JP weight=250" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Serif JP" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Serif JP Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Serif JP Heavy" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Serif JP Light" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Serif JP Semi-Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Serif JP Semi-Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Source Han Serif JP weight=250" checksum="(null)">
+  <resource identifier="SourceCodeVF Ultra-Light Italic" checksum="(null)">
   </resource>
 
   <resource identifier="Standard Symbols PS" checksum="(null)">
-  </resource>
-
-  <resource identifier="sweet heavy calligraphy" checksum="(null)">
   </resource>
 
   <resource identifier="URW Bookman Light" checksum="(null)">

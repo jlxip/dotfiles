@@ -1,0 +1,54 @@
+# --- GENERAL ---
+
+# Reload sxhkd config
+ctrl + alt + Escape
+	pkill -USR1 -x sxhkd
+
+# Exit bspwm
+ctrl + alt + shift + {q,r}
+	bspc {quit,wm -r}
+
+# Terminal
+ctrl + alt + Return
+	alacritty
+
+# rofi
+alt + space
+	rofi -no-lazy-grab -show drun
+
+# File explorer
+ctrl + alt + e
+	thunar
+
+ctrl + Print
+	import $HOME/screenshots/screenshot-`date +'%Y-%m-%d_%H-%M-%S_%N'`.png
+
+Print
+	import /tmp/screenshot.png && bash -c "xclip -selection clipboard -t image/png < /tmp/screenshot.png"
+
+alt + Home
+	pamixer -i 5
+
+alt + End
+	pamixer -d 5
+
+alt + Insert
+	pamixer -t
+
+# --- DESKTOPS ---
+ctrl + alt + {_,shift + }{1-9}
+	bspc {desktop -f,node -d} $(sh -c "echo 'I II III IV V VI VII VIII IX X' | cut -d' ' -f'"{1-9}"'")
+
+# --- WINDOWS ---
+# Tab
+alt + {_,shift + }c
+	bspc node -f '{next,prev}.local.!hidden.window'
+
+# Close and kill
+ctrl + alt + {_,shift + }w
+	bspc node -{c,k}
+
+# Change mode
+ctrl + alt + {t,s,f}
+	bspc node -t {tiled,floating,fullscreen}
+

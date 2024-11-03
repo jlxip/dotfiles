@@ -17,7 +17,7 @@ fi
 POWERLEVEL9K_CUSTOM_HOST_BACKGROUND=069
 case "$HOSTNAME" in
 	Alpha)
-		POWERLEVEL9K_CUSTOM_HOST='echo α'
+		POWERLEVEL9K_CUSTOM_HOST='echo a'
 	;;
 	Beta)
 		POWERLEVEL9K_CUSTOM_HOST='echo β'
@@ -74,6 +74,7 @@ plugins=(
   git
 )
 
+export DISABLE_AUTO_UPDATE=true
 source $ZSH/oh-my-zsh.sh
 
 export LC_CTYPE=es_ES.UTF-8
@@ -93,7 +94,7 @@ export EDITOR="nano"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Aliases
-alias vps="ssh -D8081 sysadmin@stronghold"
+alias vps="ssh -D8081 -p 23 sysadmin@stronghold"
 alias ffvps="firefox --no-remote &>/dev/null &; disown; exit"
 alias m="make run -j8"
 alias pm="pulsemixer"
