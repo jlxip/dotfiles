@@ -21,7 +21,7 @@ wmname compiz # Fix Java applications
 megasync &
 XDG_CACHE_HOME=~/.cache clipsim --daemon &
 
-#xset -dpms s off # Don't turn off screen
+xset -dpms s off # Don't turn off screen
 
 # --- CONFIG ---
 bspc config pointer_modifier mod1
