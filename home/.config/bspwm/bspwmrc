@@ -4,15 +4,15 @@
 exec &> >(tee -a "/tmp/bspwm.log")
 
 # --- AUTOSTART ---
-sxhkd &
+sxhkd &>/dev/null &
 setxkbmap es
 xsetroot -cursor_name left_ptr
 picom --config ~/.config/picom.conf &
 nitrogen --restore
 numlockx
 
-~/.config/bar.sh &
-~/.config/tray.sh &
+polybar &
+gentoo-pipewire-launcher &
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 telegram-desktop -startintray &
