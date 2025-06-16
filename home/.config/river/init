@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# --- LOG ---
+exec &> >(tee -a "/tmp/river.log")
+
+# --- MAPS ---
+# Normal
+riverctl map normal Control+Alt+Shift q exit
+riverctl map normal Control+Alt Return spawn alacritty
+riverctl map normal Alt Space spawn fuzzel
+riverctl map normal Control+Alt e spawn thunar
+# Control + Print
+riverctl map normal None Print spawn 'grim -g "$(slurp)" - | wl-copy'
+riverctl map normal Alt Home spawn "pamixer -i 5"
+riverctl map normal Alt End spawn "pamixer -d 5"
+riverctl map normal Alt Insert spawn "pamixer -t"
+
+# Windows
+riverctl map normal Control+Alt w close
+riverctl map normal Control+Alt s toggle-float
+riverctl map normal Control+Alt f toggle-fullscreen
+riverctl map normal Alt c focus-view next
+
+# Workspaces
+for i in $(seq 1 9); do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal Control+Alt $i set-focused-tags $tags
+    riverctl map normal Control+Alt+Shift $i set-view-tags $tags
+done
+
+
+# Mouse
+riverctl map-pointer normal Alt BTN_LEFT move-view
+riverctl map-pointer normal Alt BTN_RIGHT resize-view
+
+# --- WM ---
+riverctl border-width 0
+riverctl keyboard-layout es
+riverctl allow-tearing disabled
+
+# --- LAYOUT ---
+riverctl rule-add float
+riverctl default-layout rivercarro
+rivercarro -outer-gaps 0 \
+           -per-tag \
+           -main-location monocle &
+
+# --- RUN ---
+mako &
+waybar &>/dev/null &
+gentoo-pipewire-launcher &

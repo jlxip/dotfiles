@@ -151,6 +151,19 @@ fi
 
 
 
-# We're so back
-alias upd="pacman -Syu"
-
+export WHERE1=~/1/lang/bootstrap
+alias 1t="( cd $WHERE1 && DEBUG=1 make && time ./1 test.1 )"
+alias 1v="( cd $WHERE1 && DEBUG=1 make && valgrind ./1 test.1 )"
+_1r() {
+    set -e
+    cd $WHERE1
+    DEBUG=1 make
+    ./1 test.1
+    gcc -ansi -Wall -Wextra -Werror -pedantic \
+        -Wno-unused-label -Wno-unused-function \
+        test.1.c -o gen
+    echo
+    echo "----------------------------------------"
+    ./gen
+}
+alias 1="( _1r )"
