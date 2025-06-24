@@ -160,10 +160,11 @@ _1r() {
     DEBUG=1 make
     ./1 test.1
     gcc -ansi -Wall -Wextra -Werror -pedantic \
-        -Wno-unused-label -Wno-unused-function \
         test.1.c -o gen
     echo
     echo "----------------------------------------"
     ./gen
 }
 alias 1="( _1r )"
+
+alias vpn="cd /home/jlxip/pub/manual-connections && ./connect.sh"
